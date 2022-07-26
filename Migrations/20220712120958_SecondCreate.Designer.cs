@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace BootstrapMVC.Migrations
+namespace BugtrackerHF.Migrations
 {
-    [DbContext(typeof(BootstrapMVCContext))]
+    [DbContext(typeof(BugtrackerHFContext))]
     [Migration("20220712120958_SecondCreate")]
     partial class SecondCreate
     {
@@ -24,7 +24,7 @@ namespace BootstrapMVC.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("BootstrapMVC.Areas.Authentication.Models.RegisterViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.RegisterViewModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

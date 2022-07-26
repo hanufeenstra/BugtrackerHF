@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BootstrapMVC.Migrations
+namespace BugtrackerHF.Migrations
 {
     public partial class SecondCreate : Migration
     {

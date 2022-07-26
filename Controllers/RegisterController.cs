@@ -7,10 +7,10 @@ namespace BugtrackerHF.Controllers
 {
     public class RegisterController : Controller
     {
-        private readonly BootstrapMVCContext _context;
+        private readonly BugtrackerHFContext _context;
         private readonly ILogger<RegisterController> _logger;
 
-        public RegisterController(BootstrapMVCContext context, ILogger<RegisterController> logger)
+        public RegisterController(BugtrackerHFContext context, ILogger<RegisterController> logger)
         {
             _context = context;
             _logger = logger;
