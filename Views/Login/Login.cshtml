@@ -1,0 +1,87 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="shortcut icon" href="~/assets/images/favicon.png" />
+}
+
+@section Scripts {
+    <script src="~/assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="~/assets/js/off-canvas.js"></script>
+    <script src="~/assets/js/hoverable-collapse.js"></script>
+    <script src="~/assets/js/misc.js"></script>
+    <script src="~/assets/js/settings.js"></script>
+    <script src="~/assets/js/todolist.js"></script>
+    <script ></script>
+}
+
+@section Meta {
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Bugtracker">
+    <meta name="author" content="Hanu Feenstra">
+}
+
+@section Validation {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+@section Body {
+<div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="row w-100 m-0">
+        <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+            <div class="card col-lg-4 mx-auto">
+                <div class="card-body px-5 py-5">
+                    <h3 class="card-title text-left mb-3 text-center">Welcome Back!</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input asp-for="Email" class="form-control text-white" placeholder="Email Address">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input asp-for="Password" class="form-control text-white" placeholder="Password">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group d-flex align-items-center justify-content-between">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input asp-for="Remember" class="form-check-input"> Remember me
+                                </label>
+                            </div>
+                            <a href="#" class="forgot-pass">Forgot password</a>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-login" asp-controller="Login" asp-action="login" method="post">
+                                <i class="mdi mdi-logout"></i>Login
+                            </button>
+                        </div>
+                        <hr>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-github" asp-controller="Login" asp-action="LoginGithub" method="post">
+                                <i class="mdi mdi-git"></i>Github
+                            </button>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-facebook" asp-controller="Login" asp-action="LoginFacebook" method="post">
+                                <i class="mdi mdi-facebook"></i>Facebook
+                            </button>
+                        </div>
+                        <hr>
+                        <div class="form-group text-center">
+                            <p>Don't have an account yet?</p><a href="register.html"> Create Account</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
