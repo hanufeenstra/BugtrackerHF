@@ -1,38 +1,25 @@
-﻿@section Meta {
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Bugtracker">
-    <meta name="author" content="Hanu Feenstra">
-}
-
-@section Validation {
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
     <head>
-        @await RenderSectionAsync("Meta", required: false)
+        @{ await Html.RenderPartialAsync("_MetaPartial"); }
         <title>@ViewBag.Title</title>
         <!-- Layout styles -->
         <link rel="stylesheet" href= "~/assets/css/style.css"> 
         <!-- End layout styles -->
-        @await RenderSectionAsync("Styles", required: false)
+        @await RenderSectionAsync("Styles", required: true)
     </head>
     <body>
     <div class="container-scroller">
-        @await RenderSectionAsync("~/Views/Shared/_SidebarPartial.cshtml", required: false)
+        @{ await Html.RenderPartialAsync("_SidebarPartial"); }
         <div class="container-fluid page-body-wrapper">
-            @await RenderSectionAsync("~/Views/Shared/_NavbarPartial.cshtml", required: false)
+            @{ await Html.RenderPartialAsync("_NavbarPartial"); }
             <div class="main-panel">
-                @await RenderSectionAsync("Body", required: false)
-                @await RenderSectionAsync("~/Views/Shared/_FooterPartial.cshtml", required: false)
+                @RenderBody()
+                @{ await Html.RenderPartialAsync("_FooterPartial"); }
             </div>
         </div>
     </div>
-        @await RenderSectionAsync("Scripts", required: false)
-        @await RenderSectionAsync("Validation", required: false)
+        @await RenderSectionAsync("Scripts", required: true)
+        @{ await Html.RenderPartialAsync("_ValidationScriptPartial"); }
     </body>
 </html>

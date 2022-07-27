@@ -54,6 +54,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Views\Shared\_LayoutMain.cshtml~RF1ec397ac.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Support\" />
   </ItemGroup>
 

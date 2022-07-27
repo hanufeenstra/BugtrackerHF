@@ -1,17 +1,17 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    @await RenderSectionAsync("Meta", required: true)
+    @{ await Html.RenderPartialAsync("_MetaPartial"); }
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href= "~/assets/css/style.css">
     @await RenderSectionAsync("Styles", required: true)    
 </head>
 <body>
 <div class="container-scroller">
-    @await RenderSectionAsync("Body", required: true)
+    @RenderBody()
 </div>
 @await RenderSectionAsync("Scripts", required: true)
-@await RenderSectionAsync("Validation", required: true)
+@{ await Html.RenderPartialAsync("_ValidationScriptPartial"); }
 </body>
 </html>
 
