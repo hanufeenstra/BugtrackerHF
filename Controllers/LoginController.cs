@@ -56,7 +56,7 @@ namespace BugtrackerHF.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task Login(string returnUrl = "/")
+        public async Task Login(string returnUrl = "/index/index")
         {
             var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
                 .WithRedirectUri(returnUrl)
