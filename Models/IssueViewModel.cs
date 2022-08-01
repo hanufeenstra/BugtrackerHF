@@ -21,21 +21,44 @@ public class IssueViewModel
         Resolved = 5
     }
 
-    public IssueViewModel()
+    // Constructor
+    // Should be used whenever a new issue is created
+    public IssueViewModel(UserViewModel creator, string name, Severity s)
     {
-        CommentList = new List<CommentViewModel>();
+        IssueName = name;
+        CommentList = new List<MessageViewModel>();
+        var initMessage = new MessageViewModel()
+        {
+            CreatedTime = DateTime.Now,
+            Message =  creator.UserName + " created new issue on " +  CreatedDate,
+            ParentMassageId = 0,
+            //ReceiverUserId = assignedTo.Id, 
+            SenderUserId = creator.Id
+        };
+
+        ReportedByUserId = creator.Id;
+        //AssignedToUserId = assignedTo.Id;
+        CommentList.Add(initMessage);
         CurrentStatus = 0;
+        CurrentSeverity = s;
+        CreatedDate = DateTime.Now;
+        LastUpdateDate = DateTime.Now;
     }
 
     public int Id { get; set; }
-    public string? IssueName { get; set; }
-    public DateTime? CreatedDate { get; set; }
-    public DateTime? LastUpdateDate { get; set; }
-    public Severity CurrentSeverity { get; set; }
+    public string IssueName { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public DateTime LastUpdateDate { get; set; }
+    public Severity? CurrentSeverity { get; set; }
     public Status CurrentStatus { get; set; }
     public int ReportedByUserId { get; set; }
-    public int AssignedToUserId { get; set; }
-    public List<CommentViewModel>? CommentList { get; set; }
+    public int? AssignedToUserId { get; set; }
+    public List<MessageViewModel> CommentList { get; }
+
+    public void AddComment(MessageViewModel comment)
+    {
+        CommentList.Add(comment);
+    }
 
     public void IncreaseSeverity()
     {

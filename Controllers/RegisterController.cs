@@ -7,12 +7,12 @@ namespace BugtrackerHF.Controllers
 {
     public class RegisterController : Controller
     {
-        private readonly BugtrackerHFContext _context;
+        //private readonly BugtrackerHFContext _context;
         private readonly ILogger<RegisterController> _logger;
 
-        public RegisterController(BugtrackerHFContext context, ILogger<RegisterController> logger)
+        public RegisterController(ILogger<RegisterController> logger)
         {
-            _context = context;
+            //_context = context;
             _logger = logger;
         }
 
@@ -38,9 +38,9 @@ namespace BugtrackerHF.Controllers
                 //    return
                 //}
 
-                _context.Add(registerViewModel);
-                registerViewModel.HashPassword();
-                await _context.SaveChangesAsync();
+                //_context.Add(registerViewModel);
+                //registerViewModel.HashPassword();
+                //await _context.SaveChangesAsync();
 
                 return RedirectToAction("Login", "Login");
             }

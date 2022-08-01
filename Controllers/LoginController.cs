@@ -13,12 +13,12 @@ namespace BugtrackerHF.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly BugtrackerHFContext _context;
+        //private readonly BugtrackerHFContext _context;
         private readonly ILogger<LoginController> _logger;
 
-        public LoginController(BugtrackerHFContext context, ILogger<LoginController> logger)
+        public LoginController(ILogger<LoginController> logger)
         {
-            _context = context;
+            //_context = context;
             _logger = logger;
         }
 
