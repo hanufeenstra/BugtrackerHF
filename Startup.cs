@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Auth0.AspNetCore.Authentication;
-using BugtrackerHF.Data;
+using BugtrackerHF.DAL;
+using BugtrackerHF.DAL.Data;
 using BugtrackerHF.Support;
 
 namespace BugtrackerHF
@@ -25,8 +26,8 @@ namespace BugtrackerHF
             });
 
 
-            //services.AddDbContext<BugtrackerHFContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("BugtrackerHFContext") ?? throw new InvalidOperationException("Connection string 'BugtrackerHFContext' not found.")));
+            services.AddDbContext<BugtrackerHFContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("BugtrackerHFContext") ?? throw new InvalidOperationException("Connection string 'BugtrackerHFContext' not found.")));
 
             services.AddDistributedMemoryCache();
             services.AddControllersWithViews();
@@ -56,7 +57,7 @@ namespace BugtrackerHF
             {
                 endpoints.MapControllerRoute(
                     name: "Default",
-                    pattern: "{controller=Login}/{action=Login}");
+                    pattern: "{controller=Index}/{action=Index}");
 
                 endpoints.MapControllerRoute(
                     name: "Register",

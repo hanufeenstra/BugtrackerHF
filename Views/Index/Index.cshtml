@@ -155,12 +155,12 @@
                 </td>
                 <td>
                   <div class="dropdown">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuOutlineButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit </button>
+                    <button class="btn btn-outline-secondary dropdown-toggle" method="post" id="dropdownMenuOutlineButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton2">
                       <h6 class="dropdown-header">Actions</h6>
                       <a class="dropdown-item" href="#">Edit</a>
                       <a class="dropdown-item" href="#">Escalate</a>
-                      <a class="dropdown-item" href="#">Mark as resolved</a>
+                      <a class="dropdown-item" asp-controller="Index" asp-action="Claims" type="submit">Mark as resolved</a>
                     </div>
                   </div>
                 </td>

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BugtrackerHF.Models;
-using BugtrackerHF.Data;
 
 namespace BugtrackerHF.Controllers
 {

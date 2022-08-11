@@ -7,7 +7,6 @@ using BugtrackerHF.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using Auth0.AspNetCore.Authentication;
-using BugtrackerHF.Data;
 
 namespace BugtrackerHF.Controllers
 {

@@ -1,4 +1,5 @@
-﻿namespace BugtrackerHF.Models;
+﻿using BugtrackerHF.DAL;
+namespace BugtrackerHF.Models;
 
 public class MessageViewModel
 {
@@ -11,4 +12,7 @@ public class MessageViewModel
     public int SenderUserId { get; set; }
     public int? ReceiverUserId { get; set; }
     public string? Message { get; set; }
+    public bool Viewed { get; set; } = false;
+
+    
 }
