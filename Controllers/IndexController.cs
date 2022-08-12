@@ -8,6 +8,7 @@ namespace BugtrackerHF.Controllers
     public class IndexController : Controller
     {
         [Authorize]
+        [ValidateAntiForgeryToken]
         public IActionResult Index()
         {
             var name = User.Identity.Name;
