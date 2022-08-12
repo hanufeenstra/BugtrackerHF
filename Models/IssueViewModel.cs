@@ -30,13 +30,13 @@ public class IssueViewModel
         var initMessage = new MessageViewModel()
         {
             CreatedTime = DateTime.Now,
-            Message =  creator.UserName + " created new issue on " +  CreatedDate,
+            Message =  creator.UserNickname + " created new issue on " +  CreatedDate,
             ParentMassageId = 0,
             //ReceiverUserId = assignedTo.Id, 
-            SenderUserId = creator.Id
+            SenderUserId = creator.AuthZeroId
         };
 
-        ReportedByUserId = creator.Id;
+        ReportedByUserId = creator.AuthZeroId;
         //AssignedToUserId = assignedTo.Id;
         CommentList.Add(initMessage);
         CurrentStatus = 0;

@@ -21,9 +21,13 @@ namespace BugtrackerHF.Controllers
             _logger = logger;
         }
 
-        public ActionResult Login()
+        public async Task Login()
         {
-            return View();
+            var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
+                .WithRedirectUri("/index/index")
+                .Build();
+
+            await HttpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
         }
 
         //[HttpPost]

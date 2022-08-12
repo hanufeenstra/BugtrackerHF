@@ -22,14 +22,5 @@ namespace BugtrackerHF.Models
         [Display(Name = "Remember Me")]
         public bool Remember { get; set; }
 
-        public void VerifyHash(RegisterViewModel registerViewModel)
-        {
-            Hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: Password,
-                salt: registerViewModel.Salt,
-                prf: KeyDerivationPrf.HMACSHA256,
-                iterationCount: 10000,
-                numBytesRequested: 256 / 8));
-        }
     }
 }

@@ -38,13 +38,11 @@ namespace BugtrackerHF.Models
         [NotMapped]
         public string ConfirmPassword { get; set; }
 
-        public string getNickname()
+        public string GetNickname()
         {
             return FirstName + " " + LastName;
         }
 
         
-    }
-
     }
 }
