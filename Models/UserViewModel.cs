@@ -1,12 +1,25 @@
-﻿namespace BugtrackerHF.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BugtrackerHF.Models;
 
 public class UserViewModel
 {
-    public int AuthZeroId { get; set; }
+    public enum Role
+    {
+        TeamLeader = 0,
+        FullStackDeveloper = 1,
+        FrontEndDeveloper = 2,
+        BackEndDeveloper = 3,
+        UIUXEngineer = 4,
+        DevOps = 5
+    }
+
+    public int Id { get; set; }
+    public string AuthZeroId { get; set; } = "";
     public string? UserNickname { get; set; }
     public string? UserEmail { get; set; }
-    public string? UserRole { get; set; }
-    public List<NotificationViewModel>? NotificationList { get; set; }
-    public List<MessageViewModel>? MessageList { get; set; }
-    public List<IssueViewModel>? IssueList { get; set; }
+    public Role? UserRole { get; set; }
+    public ICollection<NotificationViewModel>? NotificationList { get; set; } = new List<NotificationViewModel>();
+    public ICollection<MessageViewModel>? MessageList { get; set; } = new List<MessageViewModel>();
+    public ICollection<IssueViewModel>? IssueList { get; set; } = new List<IssueViewModel>();
 }

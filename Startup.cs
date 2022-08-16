@@ -23,7 +23,13 @@ namespace BugtrackerHF
             {
                 options.Domain = Configuration["Auth0:Domain"];
                 options.ClientId = Configuration["Auth0:ClientId"];
+                //options.ClientSecret = Configuration["Auth0:ClientSecret"];
             });
+                //.WithAccessToken(options =>
+                //{
+                    //options.Audience = Configuration["Auth0:Audience"];
+                    //options.UseRefreshTokens = true;
+                //});
 
 
             services.AddDbContext<BugtrackerHFContext>(options =>
@@ -57,11 +63,15 @@ namespace BugtrackerHF
             {
                 endpoints.MapControllerRoute(
                     name: "Default",
-                    pattern: "{controller=Index}/{action=Index}");
+                    pattern: "{controller=Index}/{action=Dashboard}");
 
                 endpoints.MapControllerRoute(
                     name: "Register",
                     pattern: "{controller=Register}/{action=Register}");
+
+                endpoints.MapControllerRoute(
+                    name: "Dashboard",
+                    pattern: "{controller=Index}/{action=Dashboard}");
 
                 endpoints.MapControllerRoute(
                     name: "ForgotPassword",

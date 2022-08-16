@@ -2,22 +2,45 @@
 using BugtrackerHF.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using BugtrackerHF.DAL.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BugtrackerHF.Controllers
 {
     public class IndexController : Controller
     {
-        [Authorize]
-        public IActionResult Index()
+        private readonly BugtrackerHFContext _context;
+        private readonly ILogger<IndexController> _logger;
+
+        public IndexController(BugtrackerHFContext context, ILogger<IndexController> logger)
         {
-            var name = User.Identity.Name;
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var givenName = User.Claims.FirstOrDefault(c => c.Type == "nickname")?.Value;
+            _context = context;
+            _logger = logger;
+        }
+
+        [Authorize]
+        public IActionResult Issues()
+        {
+            var authZeroId = User.Claims.FirstOrDefault(
+                c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            var currentUserId = _context.UserViewModel.FirstOrDefault(
+                m => m.AuthZeroId == authZeroId).Id;
+
+            _logger.LogInformation("Current User Id: {currentUserId}",currentUserId);
+
+            IEnumerable<IssueViewModel> issueList =
+                _context.IssueViewModel.Where(m => m.AssignedToUserId == currentUserId);
             
-            Console.WriteLine("Email: " + name);
-            Console.WriteLine("User Id: " + userId);
-            Console.WriteLine("Nickname: " + givenName);
-            return View();
+            return View(issueList);
+        }
+
+        [Authorize]
+        public IActionResult Dashboard()
+        {
+            var authZeroId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var model = _context.UserViewModel.FirstOrDefault(m => m.AuthZeroId == authZeroId);
+            return View(model);
         }
 
         //[HttpPost]
@@ -33,7 +56,7 @@ namespace BugtrackerHF.Controllers
         [Authorize]
         public IActionResult Claims()
         {
-            return RedirectToAction("Index", "Index");
+            return RedirectToAction("Dashboard", "Index");
         }
     }
 

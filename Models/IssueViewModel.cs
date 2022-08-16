@@ -1,7 +1,14 @@
-﻿namespace BugtrackerHF.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BugtrackerHF.Models;
 
 public class IssueViewModel
 {
+    public IssueViewModel()
+    {
+        
+    }
+
     public enum Severity
     {
         Critical = 4,
@@ -18,7 +25,8 @@ public class IssueViewModel
         Pending = 2,
         InProgress = 3,
         Testing = 4,
-        Resolved = 5
+        Resolved = 5,
+        Rejected = 6
     }
 
     // Constructor
@@ -31,12 +39,12 @@ public class IssueViewModel
         {
             CreatedTime = DateTime.Now,
             Message =  creator.UserNickname + " created new issue on " +  CreatedDate,
-            ParentMassageId = 0,
+            ParentId = 0,
             //ReceiverUserId = assignedTo.Id, 
-            SenderUserId = creator.AuthZeroId
+            SenderUserId = creator.Id
         };
 
-        ReportedByUserId = creator.AuthZeroId;
+        ReportedByUserId = creator.Id;
         //AssignedToUserId = assignedTo.Id;
         CommentList.Add(initMessage);
         CurrentStatus = 0;
@@ -46,14 +54,14 @@ public class IssueViewModel
     }
 
     public int Id { get; set; }
-    public string IssueName { get; set; }
+    public string? IssueName { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime LastUpdateDate { get; set; }
     public Severity? CurrentSeverity { get; set; }
-    public Status CurrentStatus { get; set; }
-    public int ReportedByUserId { get; set; }
+    public Status? CurrentStatus { get; set; }
+    public int? ReportedByUserId { get; set; }
     public int? AssignedToUserId { get; set; }
-    public List<MessageViewModel> CommentList { get; }
+    public ICollection<MessageViewModel>? CommentList { get; }
 
     public void AddComment(MessageViewModel comment)
     {

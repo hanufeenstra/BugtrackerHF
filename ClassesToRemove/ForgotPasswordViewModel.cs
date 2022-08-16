@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BugtrackerHF.Models
+namespace BugtrackerHF.ClassesToRemove
 {
     public class ForgotPasswordViewModel
     {

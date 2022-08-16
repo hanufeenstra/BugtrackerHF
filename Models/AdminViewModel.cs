@@ -1,7 +1,11 @@
 ﻿namespace BugtrackerHF.Models;
 
-public class AdminViewModel : UserViewModel
+public class AdminViewModel
 {
-    public List<AdminViewModel>? Admins { get; set; }
-    public List<UserViewModel>? Users { get; set; }
+    public int Id { get; set; }
+
+    public string? AuthZeroId { get; set; }
+    // Set ParentId to 0 if this is the top level admin 
+    public int? ParentId { get; set; }
+    public ICollection<UserViewModel>? Users { get; set; }
 }

@@ -1,8 +1,6 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace BugtrackerHF.Models
+namespace BugtrackerHF.ClassesToRemove
 {
 
     public class LoginViewModel
