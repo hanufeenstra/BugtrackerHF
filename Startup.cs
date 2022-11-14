@@ -63,7 +63,11 @@ namespace BugtrackerHF
             {
                 endpoints.MapControllerRoute(
                     name: "Default",
-                    pattern: "{controller=Index}/{action=Dashboard}");
+                    pattern: "{controller=Login}/{action=Login}");
+
+                endpoints.MapControllerRoute(
+                    name: "CreateIssue",
+                    pattern: "{controller=CreateIssue}/{action=CreateIssue}");
 
                 endpoints.MapControllerRoute(
                     name: "Register",

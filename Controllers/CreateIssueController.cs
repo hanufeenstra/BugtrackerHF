@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BugtrackerHF.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BugtrackerHF.Controllers
 {
     public class CreateIssueController : Controller
     {
-        public IActionResult Index()
+        [Authorize]
+        public IActionResult CreateIssue()
         {
             return View();
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> CreateIssue([Bind("")] IssueViewModel issueViewModel)
+        //{
+        //    return View();
+        //}
     }
 }

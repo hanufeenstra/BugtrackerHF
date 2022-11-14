@@ -3,10 +3,10 @@
     <head>
         @{ await Html.RenderPartialAsync("_MetaPartial"); }
         <title>@ViewBag.Title</title>
+        @await RenderSectionAsync("Styles", required: true)
         <!-- Layout styles -->
         <link rel="stylesheet" href= "~/assets/css/style.css"> 
         <!-- End layout styles -->
-        @await RenderSectionAsync("Styles", required: true)
     </head>
     <body>
     <div class="container-scroller">

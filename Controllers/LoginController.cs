@@ -24,7 +24,7 @@ namespace BugtrackerHF.Controllers
         public async Task Login()
         {
             var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
-                .WithRedirectUri("/index/index")
+                .WithRedirectUri("/index/dashboard")
                 .Build();
 
             await HttpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
