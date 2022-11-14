@@ -25,26 +25,25 @@ public enum Status
 public class IssueViewModel : IIssueViewModel
 {
 
-    private readonly List<MessageViewModel> _commentList;
-    private readonly MessageViewModel _initMessage;
-    private readonly UserViewModel _creator;
+    private readonly IList<IMessageViewModel> _commentList;
+    private readonly IUserViewModel _creator;
     private Severity _currentSeverity;
-    private Status _currentStatus;
 
     // Constructor for DI
-    public IssueViewModel(List<MessageViewModel> commentList, 
-        MessageViewModel initMessage, UserViewModel creator, string name)
+    public IssueViewModel(IList<IMessageViewModel> commentList, 
+        IMessageViewModel initMessage, 
+        IUserViewModel creator, string name)
     {
         _commentList = commentList;
-        _initMessage = initMessage;
         _creator = creator;
 
         CreatedDate = DateTime.Now;
         IssueName = name;
-        _commentList.Add(_initMessage);
+        _commentList.Add(initMessage);
         _currentSeverity = Severity.Cosmetic;
-        _currentStatus = Status.Unopened;
+        CurrentStatus = Status.Unopened;
         ReportedByUserId = creator.Id;
+        AssignedToUserId = 0;
     }
 
     // Constructor
@@ -72,16 +71,24 @@ public class IssueViewModel : IIssueViewModel
     //}
 
     public int Id { get; set; }
-    public string? IssueName { get; set; }
+    public string IssueName { get; }
     public DateTime CreatedDate { get; }
     public DateTime LastUpdateDate { get; set; }
-    public Severity CurrentSeverity { get; }
-    public Status CurrentStatus { get; }
+
+    public Severity CurrentSeverity
+    {
+        get { return _currentSeverity; }
+    }
+
+    public Status CurrentStatus { get; set; }
     public int ReportedByUserId { get; }
     public int? AssignedToUserId { get; }
-    public ICollection<MessageViewModel>? CommentList { get; }
+    public ICollection<IMessageViewModel> CommentList 
+    {
+        get { return _commentList; }
+    }
 
-    public void AddComment(MessageViewModel comment)
+    public void AddComment(IMessageViewModel comment)
     {
         _commentList.Add(comment);
     }
@@ -104,11 +111,6 @@ public class IssueViewModel : IIssueViewModel
         }
     }
 
-    public void SetStatus (Status s)
-    {
-        _currentStatus = s;
-    }
-
 }
 
 public interface IIssueViewModel
@@ -121,11 +123,10 @@ public interface IIssueViewModel
     public Status CurrentStatus { get; }
     public int ReportedByUserId { get; }
     public int? AssignedToUserId { get; }
-    public ICollection<MessageViewModel>? CommentList { get; }
+    public ICollection<IMessageViewModel> CommentList { get; }
 
-    public void AddComment(MessageViewModel comment);
+    public void AddComment(IMessageViewModel comment);
     public void IncreaseSeverity();
     public void DecreaseSeverity();
-    public void SetStatus(Status s);
 }
 
