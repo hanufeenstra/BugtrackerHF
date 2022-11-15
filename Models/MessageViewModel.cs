@@ -5,10 +5,10 @@ public interface IMessageViewModel
 {
     int Id { get; set; }
     int ParentId { get; }
-    DateTime? CreatedTime { get; }
-    int? SenderUserId { get; }
-    int? ReceiverUserId { get; }
-    string? Message { get; }
+    DateTime CreatedTime { get; }
+    int SenderUserId { get; }
+    int ReceiverUserId { get; }
+    string Message { get; }
     bool Viewed { get; set; }
 }
 
@@ -41,12 +41,11 @@ public class MessageViewModel : IMessageViewModel
     public int Id { get; set; }
 
     // To make this message the parent, set ParentMessageId to 0
-    public int ParentId { get; private set; }
-
-    public DateTime? CreatedTime { get; private set; }
-    public int? SenderUserId { get; private set; }
-    public int? ReceiverUserId { get; private set; }
-    public string? Message { get; private set; }
+    public int ParentId { get; }
+    public DateTime CreatedTime { get; }
+    public int SenderUserId { get; }
+    public int ReceiverUserId { get; }
+    public string Message { get;  }
     public bool Viewed { get; set; }
 
     
