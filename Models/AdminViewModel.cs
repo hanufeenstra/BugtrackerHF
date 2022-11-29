@@ -7,5 +7,5 @@ public class AdminViewModel
     public string? AuthZeroId { get; set; }
     // Set ParentId to 0 if this is the top level admin 
     public int? ParentId { get; set; }
-    public ICollection<UserViewModel>? Users { get; set; }
+    public IList<UserViewModel>? Users { get; set; }
 }

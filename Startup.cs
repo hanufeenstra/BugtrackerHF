@@ -2,6 +2,7 @@
 using Auth0.AspNetCore.Authentication;
 using BugtrackerHF.DAL;
 using BugtrackerHF.DAL.Data;
+using BugtrackerHF.Models;
 using BugtrackerHF.Support;
 
 namespace BugtrackerHF
@@ -38,6 +39,10 @@ namespace BugtrackerHF
             services.AddDistributedMemoryCache();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddTransient<IIssueViewModel, IssueViewModel>();
+            services.AddTransient<IMessageViewModel, MessageViewModel>();
+            services.AddTransient<IUserViewModel, UserViewModel>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

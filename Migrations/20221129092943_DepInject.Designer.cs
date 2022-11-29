@@ -4,6 +4,7 @@ using BugtrackerHF.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BugtrackerHF.Migrations
 {
     [DbContext(typeof(BugtrackerHFContext))]
-    partial class BugtrackerHFContextModelSnapshot : ModelSnapshot
+    [Migration("20221129092943_DepInject")]
+    partial class DepInject
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

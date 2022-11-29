@@ -44,6 +44,9 @@ public class IssueViewModel : IIssueViewModel
 
     private readonly IList<IMessageViewModel> _commentList;
 
+    public IssueViewModel()
+    {
+    }
     // Constructor for DI
     public IssueViewModel(
         IList<IMessageViewModel> commentList, 

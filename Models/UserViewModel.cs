@@ -30,8 +30,10 @@ public class UserViewModel : IUserViewModel
     private readonly IList<IMessageViewModel> _messageList;
     private readonly IList<IIssueViewModel> _issueList;
 
+    // default constructor to keep EF Core happy
+    public UserViewModel() { }
 
-    // Constructor implementing DI
+    // Overloaded constructor implementing DI
     public UserViewModel(
         IList<NotificationViewModel> notificationList,
         IList<IMessageViewModel> messageList,

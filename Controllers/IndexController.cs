@@ -29,7 +29,7 @@ namespace BugtrackerHF.Controllers
 
             _logger.LogInformation("Current User Id: {currentUserId}",currentUserId);
 
-            IEnumerable<IssueViewModel> issueList =
+            IEnumerable<IIssueViewModel> issueList =
                 _context.IssueViewModel.Where(m => m.AssignedToUserId == currentUserId);
             
             return View(issueList);
@@ -39,7 +39,8 @@ namespace BugtrackerHF.Controllers
         public IActionResult Dashboard()
         {
             var authZeroId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var model = _context.UserViewModel.FirstOrDefault(m => m.AuthZeroId == authZeroId);
+            var model = new UserViewModel();
+            model.AuthZeroId = authZeroId;
             return View(model);
         }
 

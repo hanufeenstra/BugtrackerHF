@@ -14,8 +14,10 @@ public interface IMessageViewModel
 
 public class MessageViewModel : IMessageViewModel
 {
+    // Default constructor to keep EF Core happy 
+    public MessageViewModel() { }
 
-    // Constructor for parent message
+    // Overloaded constructor for parent message
     public MessageViewModel(int senderId, int receiverId, string message)
     {
         CreatedTime = DateTime.Now;

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IssueViewModel>
+﻿@model IEnumerable<IIssueViewModel>
 
 @{
   ViewData["Title"] = "Issues";
@@ -60,31 +60,31 @@
                           <td>
                               @switch (issue.CurrentStatus)
                               {
-                                  case IssueViewModel.Status.Unopened:
+                                  case Status.Unopened:
                                       <div class="badge badge-outline-success">Unopened</div>
                                       break;
 
-                                  case IssueViewModel.Status.Assigned:
+                                  case Status.Assigned:
                                       <div class="badge badge-outline-success">Assigned</div>
                                       break;
 
-                                  case IssueViewModel.Status.InProgress:
+                                  case Status.InProgress:
                                       <div class="badge badge-outline-success">InProgress</div>
                                       break;
 
-                                  case IssueViewModel.Status.Pending:
+                                  case Status.Pending:
                                       <div class="badge badge-outline-success">Pending</div>
                                       break;
 
-                                  case IssueViewModel.Status.Rejected:
+                                  case Status.Rejected:
                                       <div class="badge badge-outline-success">Rejected</div>
                                       break;
 
-                                  case IssueViewModel.Status.Resolved:
+                                  case Status.Resolved:
                                       <div class="badge badge-outline-success">Resolved</div>
                                       break;
 
-                                  case IssueViewModel.Status.Testing:
+                                  case Status.Testing:
                                       <div class="badge badge-outline-success">Testing</div>
                                       break;
                               }
