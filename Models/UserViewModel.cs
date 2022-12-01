@@ -37,7 +37,7 @@ public class UserViewModel
     public string AuthZeroId { get; set; } = "";
     public string? UserNickname { get; set; }
     public string? UserEmail { get; set; }
-    public Role? UserRole { get; set; }
+    public Role UserRole { get; set; }
 
     public IList<NotificationViewModel>? NotificationList { get; set; }
     public IList<MessageViewModel>? MessageList { get; set; }

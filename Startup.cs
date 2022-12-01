@@ -33,7 +33,7 @@ namespace BugtrackerHF
                     //options.UseRefreshTokens = true;
                 //})
 
-                services.AddDbContext<BugtrackerHFContext>(options =>
+            services.AddDbContext<BugtrackerHFContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("BugtrackerHFContext") ?? throw new InvalidOperationException("Connection string 'BugtrackerHFContext' not found.")));
 
             services.AddDistributedMemoryCache();

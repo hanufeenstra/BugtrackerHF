@@ -49,9 +49,6 @@ namespace BugtrackerHF.Controllers
             var user = _context.UserViewModel.SingleOrDefault(
                 m => m.AuthZeroId == authZeroId);
 
-            //user.UserEmail = User.Identity.Name;
-            //user.UserNickname = User.Claims.FirstOrDefault(c => c.Value == ClaimTypes.GivenName)?.Value;
-
             return View(user);
         }
 

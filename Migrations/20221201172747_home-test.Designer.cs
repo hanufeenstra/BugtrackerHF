@@ -4,6 +4,7 @@ using BugtrackerHF.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BugtrackerHF.Migrations
 {
     [DbContext(typeof(BugtrackerHFContext))]
-    partial class BugtrackerHFContextModelSnapshot : ModelSnapshot
+    [Migration("20221201172747_home-test")]
+    partial class hometest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,17 +54,11 @@ namespace BugtrackerHF.Migrations
                     b.Property<int>("AssignedToUserId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("CurrentSeverity")
                         .HasColumnType("int");
 
                     b.Property<int>("CurrentStatus")
                         .HasColumnType("int");
-
-                    b.Property<string>("IssueName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LastUpdateDate")
                         .HasColumnType("datetime2");
@@ -85,22 +81,7 @@ namespace BugtrackerHF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<int?>("IssueViewModelId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ParentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReceiverUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SenderUserId")
                         .HasColumnType("int");
 
                     b.Property<int?>("UserViewModelId")
@@ -178,7 +159,7 @@ namespace BugtrackerHF.Migrations
                     b.Property<string>("UserNickname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserRole")
+                    b.Property<int?>("UserRole")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
