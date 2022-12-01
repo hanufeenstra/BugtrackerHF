@@ -12,54 +12,18 @@ namespace BugtrackerHF.Controllers
 {
     public class LoginController : Controller
     {
-        //private readonly BugtrackerHFContext _context;
         private readonly ILogger<LoginController> _logger;
 
         public LoginController(ILogger<LoginController> logger)
         {
-            //_context = context;
             _logger = logger;
         }
 
-        public async Task Login()
-        {
-            var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
-                .WithRedirectUri("/index/dashboard")
-                .Build();
-
-            await HttpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
-        }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Login([Bind("Email,Password,Remember")] LoginViewModel loginViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var registerViewModel = await _context.RegisterViewModel
-        //            .FirstOrDefaultAsync(m => m.Email == loginViewModel.Email);
-
-        //        loginViewModel.VerifyHash(registerViewModel);
-
-        //        if (registerViewModel.Hashed == loginViewModel.Hashed)
-        //        {
-        //            _logger.LogInformation("User: {Email} verified successfully", loginViewModel.Email);
-
-        //            //await CreateSession(registerViewModel);
-
-        //            _logger.LogInformation("Checked: {Checked}",loginViewModel.Remember);
-
-        //            return RedirectToAction("Index", "Index");
-        //        }
-        //    }
-        //    return View(loginViewModel);
-        //}
         // https://github.com/auth0-samples/auth0-aspnetcore-mvc-samples/blob/master/Quickstart/Sample/Controllers/AccountController.cs
         // https://auth0.com/docs/quickstart/webapp/aspnet-core/01-login
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task Login(string returnUrl = "/")
+        
+        public async Task Login(string returnUrl = "/index/dashboard")
         {
             var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
                 .WithRedirectUri(returnUrl)
@@ -74,7 +38,7 @@ namespace BugtrackerHF.Controllers
             var authenticationProperties = new LogoutAuthenticationPropertiesBuilder()
                 // Indicate here where Auth0 should redirect the user after a logout.
                 // Note that the resulting absolute Uri must be whitelisted in 
-                .WithRedirectUri(Url.Action("Login", "Login"))
+                .WithRedirectUri(Url.Action("LoggedOut", "Logout"))
                 .Build();
 
             await HttpContext.SignOutAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);

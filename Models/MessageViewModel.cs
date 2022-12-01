@@ -1,18 +1,7 @@
 ﻿using BugtrackerHF.DAL;
 namespace BugtrackerHF.Models;
 
-public interface IMessageViewModel
-{
-    int Id { get; set; }
-    int ParentId { get; }
-    DateTime CreatedTime { get; }
-    int SenderUserId { get; }
-    int ReceiverUserId { get; }
-    string Message { get; }
-    bool Viewed { get; set; }
-}
-
-public class MessageViewModel : IMessageViewModel
+public class MessageViewModel
 {
     // Default constructor to keep EF Core happy 
     public MessageViewModel() { }
@@ -47,7 +36,7 @@ public class MessageViewModel : IMessageViewModel
     public DateTime CreatedTime { get; }
     public int SenderUserId { get; }
     public int ReceiverUserId { get; }
-    public string Message { get;  }
+    public string? Message { get;  }
     public bool Viewed { get; set; }
 
     

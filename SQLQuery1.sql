@@ -1,1 +1,1 @@
-select * from MessageViewModel
+﻿select * from UserViewModel

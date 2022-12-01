@@ -22,35 +22,20 @@ public enum Status
     Rejected = 6
 }
 
-public interface IIssueViewModel
-{
-    int Id { get; set; }
-    string IssueName { get; }
-    DateTime CreatedDate { get; }
-    DateTime LastUpdateDate { get; }
-    Severity CurrentSeverity { get; }
-    Status CurrentStatus { get; set; }
-    int ReportedByUserId { get; }
-    int AssignedToUserId { get; }
-    IList<IMessageViewModel> CommentList { get; }
-    void AddComment(IMessageViewModel comment);
-    void IncreaseSeverity();
-    void DecreaseSeverity();
-    void AssignTo(int userId);
-}
 
-public class IssueViewModel : IIssueViewModel
+
+public class IssueViewModel
 {
 
-    private readonly IList<IMessageViewModel> _commentList;
-
+    // Default Constructor
     public IssueViewModel()
     {
     }
+
     // Constructor for DI
     public IssueViewModel(
-        IList<IMessageViewModel> commentList, 
-        IMessageViewModel initMessage,
+        IList<MessageViewModel> commentList, 
+        MessageViewModel initMessage,
         int reporterId, string name)
     {
         IssueName = name;
@@ -60,24 +45,28 @@ public class IssueViewModel : IIssueViewModel
         CurrentStatus = Status.Unopened;
         ReportedByUserId = reporterId;
         AssignedToUserId = 0;
-        _commentList = commentList;
-        _commentList.Add(initMessage);
+        CommentList = commentList;
+        CommentList.Add(initMessage);
     }
 
     public int Id { get; set; }
-    public string IssueName { get; }
+    public string? IssueName { get; }
     public DateTime CreatedDate { get; }
     public DateTime LastUpdateDate { get; private set; }
     public Severity CurrentSeverity { get; private set; }
     public Status CurrentStatus { get; set; }
     public int ReportedByUserId { get; }
     public int AssignedToUserId { get; private set; }
-    public IList<IMessageViewModel> CommentList => _commentList;
+    public IList<MessageViewModel>? CommentList { get; }
 
-    public void AddComment(IMessageViewModel comment)
+    public void AddComment(MessageViewModel comment)
     {
-        _commentList.Add(comment);
-        LastUpdateDate = DateTime.Now;
+        if (CommentList != null)
+        {
+            CommentList.Add(comment);
+            LastUpdateDate = DateTime.Now;
+        }
+        
     }
 
     public void IncreaseSeverity()

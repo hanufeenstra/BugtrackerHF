@@ -31,19 +31,15 @@ namespace BugtrackerHF
                 //{
                     //options.Audience = Configuration["Auth0:Audience"];
                     //options.UseRefreshTokens = true;
-                //});
+                //})
 
-
-            services.AddDbContext<BugtrackerHFContext>(options =>
+                services.AddDbContext<BugtrackerHFContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BugtrackerHFContext") ?? throw new InvalidOperationException("Connection string 'BugtrackerHFContext' not found.")));
 
             services.AddDistributedMemoryCache();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddTransient<IIssueViewModel, IssueViewModel>();
-            services.AddTransient<IMessageViewModel, MessageViewModel>();
-            services.AddTransient<IUserViewModel, UserViewModel>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

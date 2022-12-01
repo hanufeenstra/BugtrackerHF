@@ -59,7 +59,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
     <Folder Include="Support\" />
   </ItemGroup>
 

@@ -1,5 +1,4 @@
-﻿@model IUserViewModel
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
     <head>
     @await Html.PartialAsync("_MetaPartial")
@@ -11,9 +10,9 @@
     </head>
     <body>
     <div class="container-scroller">
-        @await Html.PartialAsync("_SidebarPartial", Model)
+        @await Html.PartialAsync("_SidebarPartial")
         <div class="container-fluid page-body-wrapper">
-            @await Html.PartialAsync("_NavbarPartial", Model)
+            @await Html.PartialAsync("_NavbarPartial")
             <div class="main-panel">
                 @RenderBody()
                 @await Html.PartialAsync("_FooterPartial")

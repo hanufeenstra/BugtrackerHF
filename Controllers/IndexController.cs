@@ -3,7 +3,6 @@ using BugtrackerHF.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using BugtrackerHF.DAL.Data;
-using BugtrackerHF.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace BugtrackerHF.Controllers
@@ -22,32 +21,38 @@ namespace BugtrackerHF.Controllers
         [Authorize]
         public IActionResult Issues()
         {
+
             var authZeroId = User.Claims.FirstOrDefault(
                 c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-
-            IUserViewModel user = _context.UserViewModel.FirstOrDefault(
+            
+                
+            var user = _context.UserViewModel.FirstOrDefault(
                 m => m.AuthZeroId == authZeroId);
 
-            _logger.LogInformation("Current User Id: {currentUserId}",user.Id);
+            _logger.LogInformation("Current User Id: {currentUserId}", user.Id);
 
-            IEnumerable<IssueViewModel> issueList =
-                _context.IssueViewModel.Where(m => m.AssignedToUserId == user.Id);
+            IEnumerable<IssueViewModel> issueList = _context.IssueViewModel
+                .Where(m => m.AssignedToUserId == user.Id);
 
-            IUserAndIssueViewModel viewModel = new UserAndIssueViewModel(user, issueList);
 
-            return View(viewModel);
+            user.IssueList = issueList;
+            user.UserNickname = User.Identity.Name;
+
+
+            return View(user);
+        }
 
         [Authorize]
         public IActionResult Dashboard()
         {
             var authZeroId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var model = _context.UserViewModel.SingleOrDefault(
+            var user = _context.UserViewModel.SingleOrDefault(
                 m => m.AuthZeroId == authZeroId);
-            
-            if(model!=null)
-                return View(model);
 
-            return View();
+            //user.UserEmail = User.Identity.Name;
+            //user.UserNickname = User.Claims.FirstOrDefault(c => c.Value == ClaimTypes.GivenName)?.Value;
+
+            return View(user);
         }
 
         //[HttpPost]
