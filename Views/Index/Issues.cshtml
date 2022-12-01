@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IIssueViewModel>
+﻿@model BugtrackerHF.ViewModels.IUserAndIssueViewModel
 
 @{
   ViewData["Title"] = "Issues";
@@ -44,7 +44,7 @@
               </thead>
               <tbody>
               @{
-                  foreach (var issue in Model)
+                  foreach (var issue in Model.IssueList)
                   {
                       <tr>
                           <td>

@@ -24,7 +24,7 @@ namespace BugtrackerHF.Controllers.API
 
         // Registers a user in the database
         // Takes an Auth0 claim ID as parameter
-        // POST /api/createuser
+        // POST: /api/user
         [HttpPost]
         public async Task<IActionResult> CreateUser(string authZeroId, string userEmail, string userNickname)
         {

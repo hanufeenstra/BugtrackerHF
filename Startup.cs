@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Runtime.InteropServices.ComTypes;
+using Microsoft.EntityFrameworkCore;
 using Auth0.AspNetCore.Authentication;
 using BugtrackerHF.DAL;
 using BugtrackerHF.DAL.Data;
@@ -60,6 +61,7 @@ namespace BugtrackerHF
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseRouting();
+            app.UseHttpsRedirection();
 
             app.UseAuthentication();
             app.UseAuthorization();

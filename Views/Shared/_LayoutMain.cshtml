@@ -1,7 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@model IUserViewModel
+<!DOCTYPE html>
 <html lang="en">
     <head>
-        @{ await Html.RenderPartialAsync("_MetaPartial"); }
+    @await Html.PartialAsync("_MetaPartial")
         <title>@ViewBag.Title</title>
         @await RenderSectionAsync("Styles", required: true)
         <!-- Layout styles -->
@@ -10,16 +11,16 @@
     </head>
     <body>
     <div class="container-scroller">
-        @{ await Html.RenderPartialAsync("_SidebarPartial"); }
+        @await Html.PartialAsync("_SidebarPartial", Model)
         <div class="container-fluid page-body-wrapper">
-            @{ await Html.RenderPartialAsync("_NavbarPartial"); }
+            @await Html.PartialAsync("_NavbarPartial", Model)
             <div class="main-panel">
                 @RenderBody()
-                @{ await Html.RenderPartialAsync("_FooterPartial"); }
+                @await Html.PartialAsync("_FooterPartial")
             </div>
         </div>
     </div>
         @await RenderSectionAsync("Scripts", required: true)
-        @{ await Html.RenderPartialAsync("_ValidationScriptPartial"); }
+    @await Html.PartialAsync("_ValidationScriptPartial")
     </body>
 </html>
