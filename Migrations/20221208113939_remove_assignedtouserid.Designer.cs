@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BugtrackerHF.Migrations
 {
     [DbContext(typeof(BugtrackerHFContext))]
-    [Migration("20221201065621_vs_moaning")]
-    partial class vs_moaning
+    [Migration("20221208113939_remove_assignedtouserid")]
+    partial class remove_assignedtouserid
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,25 +24,6 @@ namespace BugtrackerHF.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("BugtrackerHF.Models.AdminViewModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("AuthZeroId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ParentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AdminViewModel");
-                });
-
             modelBuilder.Entity("BugtrackerHF.Models.IssueViewModel", b =>
                 {
                     b.Property<int>("Id")
@@ -51,8 +32,8 @@ namespace BugtrackerHF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AssignedToUserId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("CurrentSeverity")
                         .HasColumnType("int");
@@ -60,10 +41,18 @@ namespace BugtrackerHF.Migrations
                     b.Property<int>("CurrentStatus")
                         .HasColumnType("int");
 
+                    b.Property<string>("IssueName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("LastUpdateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UserViewModelId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserViewModelId");
 
                     b.ToTable("IssueViewModel");
                 });
@@ -76,25 +65,26 @@ namespace BugtrackerHF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CreatedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("IssueViewModelId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Viewed")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IssueViewModelId");
+
                     b.ToTable("MessageViewModel");
-                });
-
-            modelBuilder.Entity("BugtrackerHF.Models.NotificationViewModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("NotificationViewModels");
                 });
 
             modelBuilder.Entity("BugtrackerHF.Models.ProjectViewModel", b =>
@@ -105,15 +95,13 @@ namespace BugtrackerHF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("ProjectAdminId")
+                    b.Property<int>("ProjectManagerId")
                         .HasColumnType("int");
 
                     b.Property<string>("ProjectName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProjectAdminId");
 
                     b.ToTable("ProjectViewModel");
                 });
@@ -126,9 +114,6 @@ namespace BugtrackerHF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("AdminViewModelId")
-                        .HasColumnType("int");
-
                     b.Property<string>("AuthZeroId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -139,32 +124,36 @@ namespace BugtrackerHF.Migrations
                     b.Property<string>("UserNickname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("UserRole")
+                        .HasColumnType("int");
 
-                    b.HasIndex("AdminViewModelId");
+                    b.HasKey("Id");
 
                     b.ToTable("UserViewModel");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.ProjectViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.IssueViewModel", b =>
                 {
-                    b.HasOne("BugtrackerHF.Models.AdminViewModel", "ProjectAdmin")
-                        .WithMany()
-                        .HasForeignKey("ProjectAdminId");
+                    b.HasOne("BugtrackerHF.Models.UserViewModel", null)
+                        .WithMany("IssueList")
+                        .HasForeignKey("UserViewModelId");
+                });
 
-                    b.Navigation("ProjectAdmin");
+            modelBuilder.Entity("BugtrackerHF.Models.MessageViewModel", b =>
+                {
+                    b.HasOne("BugtrackerHF.Models.IssueViewModel", null)
+                        .WithMany("MessageList")
+                        .HasForeignKey("IssueViewModelId");
+                });
+
+            modelBuilder.Entity("BugtrackerHF.Models.IssueViewModel", b =>
+                {
+                    b.Navigation("MessageList");
                 });
 
             modelBuilder.Entity("BugtrackerHF.Models.UserViewModel", b =>
                 {
-                    b.HasOne("BugtrackerHF.Models.AdminViewModel", null)
-                        .WithMany("Users")
-                        .HasForeignKey("AdminViewModelId");
-                });
-
-            modelBuilder.Entity("BugtrackerHF.Models.AdminViewModel", b =>
-                {
-                    b.Navigation("Users");
+                    b.Navigation("IssueList");
                 });
 #pragma warning restore 612, 618
         }

@@ -46,92 +46,96 @@
               </thead>
               <tbody>
               @{
-                  foreach (var issue in Model.IssueList)
+                  if (Model.IssueList.Any())
                   {
-                      <tr>
-                          <td>
-                              @switch (issue.CurrentStatus)
-                              {
-                                  case Status.Unopened:
-                                      <div class="badge badge-outline-secondary">Unopened</div>
-                                      break;
+                      foreach (var issue in Model.IssueList)
+                          {
+                              <tr>
+                                  <td>
+                                      @switch (issue.CurrentStatus)
+                                      {
+                                          case Status.Unopened:
+                                              <div class="badge badge-outline-secondary">Unopened</div>
+                                              break;
 
-                                  case Status.Assigned:
-                                      <div class="badge badge-outline-secondary">Assigned</div>
-                                      break;
+                                          case Status.Assigned:
+                                              <div class="badge badge-outline-secondary">Assigned</div>
+                                              break;
 
-                                  case Status.InProgress:
-                                      <div class="badge badge-outline-primary">InProgress</div>
-                                      break;
+                                          case Status.InProgress:
+                                              <div class="badge badge-outline-primary">InProgress</div>
+                                              break;
 
-                                  case Status.Pending:
-                                      <div class="badge badge-outline-warning">Pending</div>
-                                      break;
+                                          case Status.Pending:
+                                              <div class="badge badge-outline-warning">Pending</div>
+                                              break;
 
-                                  case Status.Rejected:
-                                      <div class="badge badge-outline-danger">Rejected</div>
-                                      break;
+                                          case Status.Rejected:
+                                              <div class="badge badge-outline-danger">Rejected</div>
+                                              break;
 
-                                  case Status.Resolved:
-                                      <div class="badge badge-outline-success">Resolved</div>
-                                      break;
+                                          case Status.Resolved:
+                                              <div class="badge badge-outline-success">Resolved</div>
+                                              break;
 
-                                  case Status.Testing:
-                                      <div class="badge badge-outline-info">Testing</div>
-                                      break;
-                              }
-                              
-                          </td>
-                          <td>
-                              <img src="~/assets/images/faces/face1.jpg" alt="image"/>
-                              <span class="ps-2">@issue.ReportedByUserId</span>
-                          </td>
-                          <td> 02312 </td>
-                          <td> $14,500 </td>
-                          <td> Dashboard </td>
-                          <td> Credit card </td>
-                          <!--- Selecting a badge based on issue severity --->
-                          <td>
-                              @switch (issue.CurrentSeverity)
-                              {
-                                  case Severity.Cosmetic:
-                                      <div class="badge badge-outline-success">Cosmetic</div>
-                                      break;
+                                          case Status.Testing:
+                                              <div class="badge badge-outline-info">Testing</div>
+                                              break;
+                                      }
 
-                                  case Severity.Minor:
-                                      <div class="badge badge-outline-info">Minor</div>
-                                      break;
+                                  </td>
+                                  <td>
+                                      <img src="~/assets/images/faces/face1.jpg" alt="image"/>
+                                      <span class="ps-2">@issue.ReportedByUserId</span>
+                                  </td>
+                                  <td> 02312 </td>
+                                  <td> $14,500 </td>
+                                  <td> Dashboard </td>
+                                  <td> Credit card </td>
+                                  <!--- Selecting a badge based on issue severity --->
+                                  <td>
+                                      @switch (issue.CurrentSeverity)
+                                      {
+                                          case Severity.Cosmetic:
+                                              <div class="badge badge-outline-success">Cosmetic</div>
+                                              break;
 
-                                  case Severity.Moderate:
-                                      <div class="badge badge-outline-warning">Moderate</div>
-                                      break;
+                                          case Severity.Minor:
+                                              <div class="badge badge-outline-info">Minor</div>
+                                              break;
 
-                                  case Severity.Major:
-                                      <div class="badge badge-outline-danger">Major</div>
-                                      break;
+                                          case Severity.Moderate:
+                                              <div class="badge badge-outline-warning">Moderate</div>
+                                              break;
 
-                                  case Severity.Critical:
-                                      <div class="badge badge-outline-danger">Critical</div>
-                                      break;
-                              }
-                          </td>
-                          <!--- Selecting a badge based on issue status --->
+                                          case Severity.Major:
+                                              <div class="badge badge-outline-danger">Major</div>
+                                              break;
 
-                          <td>
-                              <div class="dropdown">
-                                  <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuOutlineButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit </button>
-                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton2">
-                                      <h6 class="dropdown-header">Actions</h6>
-                                      <a class="dropdown-item" href="#">Edit</a>
-                                      <a class="dropdown-item" href="#">Escalate</a>
-                                      <a class="dropdown-item" href="#">Mark as resolved</a>
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
+                                          case Severity.Critical:
+                                              <div class="badge badge-outline-danger">Critical</div>
+                                              break;
+                                      }
+                                  </td>
+                                  <!--- Selecting a badge based on issue status --->
+
+                                  <td>
+                                      <div class="dropdown">
+                                          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuOutlineButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit </button>
+                                          <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton2">
+                                              <h6 class="dropdown-header">Actions</h6>
+                                              <a class="dropdown-item" href="#">Edit</a>
+                                              <a class="dropdown-item" href="#">Escalate</a>
+                                              <a class="dropdown-item" href="#">Mark as resolved</a>
+                                          </div>
+                                      </div>
+                                  </td>
+                              </tr>
+
+                      }
                   }
               }
-              <!--tr>
+                  <!--tr>
                   <td>
                       <img src="~/assets/images/faces/face2.jpg" alt="image"/>
                       <span class="ps-2">Estella Bryan</span>

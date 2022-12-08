@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BugtrackerHF.Models;
 
@@ -32,21 +33,19 @@ public class IssueViewModel
     {
     }
 
-    // Constructor for DI
     public IssueViewModel(
-        IList<MessageViewModel> commentList, 
-        MessageViewModel initMessage,
-        int reporterId, string name)
+        string name,
+        int reportedByUserId,
+        MessageViewModel parentMessage)
     {
         IssueName = name;
         CreatedDate = DateTime.Now;
         LastUpdateDate = DateTime.Now;
         CurrentSeverity = Severity.Cosmetic;
         CurrentStatus = Status.Unopened;
-        ReportedByUserId = reporterId;
-        AssignedToUserId = 0;
-        CommentList = commentList;
-        CommentList.Add(initMessage);
+        ReportedByUserId = reportedByUserId;
+        MessageList = new Collection<MessageViewModel>();
+        MessageList.Add(parentMessage);
     }
 
     public int Id { get; set; }
@@ -56,18 +55,7 @@ public class IssueViewModel
     public Severity CurrentSeverity { get; set; }
     public Status CurrentStatus { get; set; }
     public int ReportedByUserId { get; }
-    public int AssignedToUserId { get; set; }
-    public IList<MessageViewModel>? CommentList { get; }
-
-    public void AddComment(MessageViewModel comment)
-    {
-        if (CommentList != null)
-        {
-            CommentList.Add(comment);
-            LastUpdateDate = DateTime.Now;
-        }
-        
-    }
+    public virtual ICollection<MessageViewModel>? MessageList { get; set; }
 
     public void IncreaseSeverity()
     {
@@ -91,7 +79,7 @@ public class IssueViewModel
 
     public void AssignTo(int userId)
     {
-        AssignedToUserId = userId;
+        //AssignedToUserId = userId;
         LastUpdateDate = DateTime.Now;
     }
 }

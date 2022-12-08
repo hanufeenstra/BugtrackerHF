@@ -23,37 +23,49 @@ namespace BugtrackerHF.Controllers.API
 
         // GET: /api/issue
         [HttpGet]
-        public async Task<ActionResult<IList<IssueViewModel>>> GetIssue()
+        public async Task<ActionResult> GetIssue()
         {
             var model = await _context.IssueViewModel.ToListAsync();
 
-            return model;
+            return Ok(model);
         }
 
         //GET: /api/issue/5
         [HttpGet("{Id}")]
 
-        public async Task<ActionResult<IssueViewModel>> GetIssue(int id)
+        public async Task<ActionResult> GetIssue(int id)
         {
             var model = await _context.IssueViewModel.FirstOrDefaultAsync(m => m.Id == id);
+
+            
 
             if( model == null)
                 return NotFound();
 
-            return model;
+            return Ok(model);
         }
 
-        // POST: /api/issue
-        //[HttpPost]
-        //public async Task<ActionResult> CreateIssue(IssueViewModel issue)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.IssueViewModel.Add(issue);
-        //        await _context.SaveChangesAsync();
-        //        return Ok(_context.IssueViewModel.SingleOrDefaultAsync());
-        //    }
-        //    return 
-        //}
+        // POST: /api/issue?issueName&comment&creatorId&assignedToId
+        [HttpPost]
+        public async Task<ActionResult> CreateIssue(string issueName, string comment, int creatorId)
+        {
+            var issue = new IssueViewModel( 
+                issueName, 
+                creatorId,
+                new MessageViewModel(creatorId, "Issue: " + comment + ", opened by: " + creatorId.ToString())
+            );
+
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _context.IssueViewModel.Add(issue);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("CreateIssue", issue);
+            
+        }
+        
     }
 }

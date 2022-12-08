@@ -4,22 +4,22 @@
 
 namespace BugtrackerHF.Migrations
 {
-    public partial class vs_moaning : Migration
+    public partial class remove_assignedtouserid : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "UserRole",
-                table: "UserViewModel");
+                name: "AssignedToUserId",
+                table: "IssueViewModel");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "UserRole",
-                table: "UserViewModel",
+                name: "AssignedToUserId",
+                table: "IssueViewModel",
                 type: "int",
-                nullable: true,
+                nullable: false,
                 defaultValue: 0);
         }
     }

@@ -24,20 +24,13 @@ namespace BugtrackerHF.Controllers
 
             var authZeroId = User.Claims.FirstOrDefault(
                 c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            
-                
-            var user = _context.UserViewModel.FirstOrDefault(
-                m => m.AuthZeroId == authZeroId);
 
-            _logger.LogInformation("Current User Id: {currentUserId}", user.Id);
+            //explicit loading
+            var user = _context.UserViewModel.Single(u => u.AuthZeroId == authZeroId);
 
-            IEnumerable<IssueViewModel> issueList = _context.IssueViewModel
-                .Where(m => m.AssignedToUserId == user.Id);
-
-
-            user.IssueList = issueList;
-            user.UserNickname = User.Identity.Name;
-
+            _context.Entry(user)
+                .Collection(u => u.IssueList)
+                .Load();
 
             return View(user);
         }
@@ -57,6 +50,11 @@ namespace BugtrackerHF.Controllers
         //[ValidateAntiForgeryToken]
         //public async Task CreateIssue([Bind(", ,")] IssueViewModel issueViewModel, int id)
         //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.IssueViewModel.Add(issueViewModel);
+        //        await _context.SaveChangesAsync();
+        //    }
 
         //    return
         //}

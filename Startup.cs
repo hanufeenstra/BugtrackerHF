@@ -37,7 +37,7 @@ namespace BugtrackerHF
                 options.UseSqlServer(Configuration.GetConnectionString("BugtrackerHFContext") ?? throw new InvalidOperationException("Connection string 'BugtrackerHFContext' not found.")));
 
             services.AddDistributedMemoryCache();
-            services.AddControllersWithViews();
+            services.AddMvcCore();
             services.AddRazorPages();
 
         }
@@ -62,33 +62,33 @@ namespace BugtrackerHF
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(routes =>
             {
-                endpoints.MapControllerRoute(
+                routes.MapControllerRoute(
                     name: "Default",
                     pattern: "{controller=Login}/{action=Login}");
 
-                endpoints.MapControllerRoute(
+                routes.MapControllerRoute(
                     name: "CreateIssue",
                     pattern: "{controller=CreateIssue}/{action=CreateIssue}");
 
-                endpoints.MapControllerRoute(
+                routes.MapControllerRoute(
                     name: "Register",
                     pattern: "{controller=Register}/{action=Register}");
 
-                endpoints.MapControllerRoute(
+                routes.MapControllerRoute(
                     name: "Dashboard",
                     pattern: "{controller=Index}/{action=Dashboard}");
 
-                endpoints.MapControllerRoute(
+                routes.MapControllerRoute(
                     name: "ForgotPassword",
                     pattern: "{controller=ForgotPassword}/{action=ForgotPassword}");
 
-                endpoints.MapControllerRoute(
+                routes.MapControllerRoute(
                     name: "Index",
                     pattern: "{controller=Index}/{action=Index}");
 
-                endpoints.MapControllerRoute(
+                routes.MapControllerRoute(
                     name: "Login",
                     pattern: "{controller=Login}/{action=Login}");
 

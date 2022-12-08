@@ -49,7 +49,7 @@ namespace BugtrackerHF.Controllers.API
             await _context.SaveChangesAsync();
             _logger.LogInformation("New user: {0}, added to database", userViewModel.AuthZeroId);
 
-            return Ok();
+            return CreatedAtAction("CreateUser", userViewModel);
         }
 
     }
