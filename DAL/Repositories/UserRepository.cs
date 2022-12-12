@@ -21,9 +21,9 @@ public class UserRepository: IUserRepository
         return user;
     }
 
-    public async Task<UserViewModel> GetByAuthZeroIdAsync(string authZeroId)
+    public UserViewModel GetByAuthZeroId(string authZeroId)
     {
-        var user = await _context.UserViewModel.SingleAsync(u => u.AuthZeroId == authZeroId);
+        var user = _context.UserViewModel.SingleOrDefault(u => u.AuthZeroId == authZeroId);
         return user;
     }
 

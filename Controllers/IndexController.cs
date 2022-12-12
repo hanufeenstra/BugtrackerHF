@@ -33,9 +33,9 @@ namespace BugtrackerHF.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Dashboard()
+        public IActionResult Dashboard()
         {
-            var user = await _userRepository.GetByAuthZeroIdAsync(GetAuthZeroId());
+            var user = _userRepository.GetByAuthZeroId(GetAuthZeroId());
 
             return View(user);
         }

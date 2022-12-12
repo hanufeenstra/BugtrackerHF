@@ -5,7 +5,7 @@ namespace BugtrackerHF.DAL.Repositories;
 public interface IUserRepository
 {
     Task<UserViewModel> AddUserAsync(UserViewModel user);
-    Task<UserViewModel> GetByAuthZeroIdAsync(string authZeroId);
+    UserViewModel GetByAuthZeroId(string authZeroId);
     Task<UserViewModel> LoadIssuesAsync(UserViewModel user);
     Task<UserViewModel> LoadIssuesByAuthZeroIdAsync(string authZeroId);
     void Update(int id, string email, string nickname);
