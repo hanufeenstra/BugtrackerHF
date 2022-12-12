@@ -23,6 +23,8 @@ public class UserViewModel
     public string? UserNickname { get; set; }
     [EmailAddress]
     public string? UserEmail { get; set; }
+
+    public string? UserPicture { get; set; }
     public Role UserRole { get; set; } = Role.Developer;
     public virtual ICollection<IssueViewModel>? IssueList { get; set; }
 

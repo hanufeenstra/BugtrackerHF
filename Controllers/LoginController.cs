@@ -19,10 +19,6 @@ namespace BugtrackerHF.Controllers
             _logger = logger;
         }
 
-        // https://github.com/auth0-samples/auth0-aspnetcore-mvc-samples/blob/master/Quickstart/Sample/Controllers/AccountController.cs
-        // https://auth0.com/docs/quickstart/webapp/aspnet-core/01-login
-
-        
         public async Task Login(string returnUrl = "/index/dashboard")
         {
             var authenticationProperties = new LoginAuthenticationPropertiesBuilder()

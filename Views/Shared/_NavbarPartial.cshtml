@@ -1,4 +1,6 @@
-﻿<nav class="navbar p-0 fixed-top d-flex flex-row">
+﻿@using System.Security.Claims
+@model UserViewModel
+<nav class="navbar p-0 fixed-top d-flex flex-row">
   <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
     <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
   </div>
@@ -106,8 +108,8 @@
       <li class="nav-item dropdown">
         <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
           <div class="navbar-profile">
-            <img class="img-xs rounded-circle" src="assets/images/faces/face15.jpg" alt="">
-            <p class="mb-0 d-none d-sm-block navbar-profile-name">Profile</p>
+              <img class="img-xs rounded-circle" src=@Model.UserPicture alt="">
+            <p class="mb-0 d-none d-sm-block navbar-profile-name">@Model.UserNickname </p>
             <i class="mdi mdi-menu-down d-none d-sm-block"></i>
           </div>
         </a>

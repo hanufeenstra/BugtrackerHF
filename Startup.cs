@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Auth0.AspNetCore.Authentication;
 using BugtrackerHF.DAL;
 using BugtrackerHF.DAL.Data;
+using BugtrackerHF.DAL.Repositories;
 using BugtrackerHF.Models;
 using BugtrackerHF.Support;
 
@@ -25,16 +26,14 @@ namespace BugtrackerHF
             {
                 options.Domain = Configuration["Auth0:Domain"];
                 options.ClientId = Configuration["Auth0:ClientId"];
-                //options.ClientSecret = Configuration["Auth0:ClientSecret"];
             });
-                //.WithAccessToken(options =>
-                //{
-                    //options.Audience = Configuration["Auth0:Audience"];
-                    //options.UseRefreshTokens = true;
-                //})
 
             services.AddDbContext<BugtrackerHFContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("BugtrackerHFContext") ?? throw new InvalidOperationException("Connection string 'BugtrackerHFContext' not found.")));
+
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IIssueRepository, IssueRepository>();
+            services.AddTransient<IMessageRepository, MessageRepository>();
 
             services.AddDistributedMemoryCache();
             services.AddMvcCore();

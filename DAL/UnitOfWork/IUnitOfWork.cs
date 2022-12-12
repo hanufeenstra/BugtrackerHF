@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿//using Microsoft.EntityFrameworkCore;
 
-namespace BugtrackerHF.DAL.UnitOfWork;
+//namespace BugtrackerHF.DAL.UnitOfWork;
 
-public interface IUnitOfWork
-{
-    void CreateTransaction();
-    void Commit();
-    void Rollback();
-    void Save();
-}
+//public interface IUnitOfWork
+//{
+//    void CreateTransaction();
+//    void Commit();
+//    void Rollback();
+//    void Save();
+//}

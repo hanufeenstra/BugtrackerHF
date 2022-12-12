@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using BugtrackerHF.DAL.Data;
+using BugtrackerHF.DAL.Repositories;
 using BugtrackerHF.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
@@ -12,12 +13,12 @@ namespace BugtrackerHF.Controllers.API
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly BugtrackerHFContext _context;
+        private readonly IUserRepository _userRepository;
         private readonly ILogger<UserController> _logger;
 
-        public UserController(ILogger<UserController> logger, BugtrackerHFContext context)
+        public UserController(ILogger<UserController> logger, IUserRepository userRepository)
         {
-            _context = context;
+            _userRepository = userRepository;
             _logger = logger;
         }
 
@@ -26,11 +27,11 @@ namespace BugtrackerHF.Controllers.API
         // Takes an Auth0 claim ID as parameter
         // POST: /api/user
         [HttpPost]
-        public async Task<IActionResult> CreateUser(string authZeroId, string userEmail, string userNickname)
+        public async Task<IActionResult> CreateUser(string authZeroId, string userEmail, string userNickname, string userPicture)
         {
             _logger.LogInformation("API Received: {0}", authZeroId);
 
-            var model = await _context.UserViewModel.SingleOrDefaultAsync(m => m.AuthZeroId == authZeroId);
+            var model = await _userRepository.GetByAuthZeroIdAsync(authZeroId);
 
             if (model != null)
             {
@@ -42,11 +43,12 @@ namespace BugtrackerHF.Controllers.API
             {
                 AuthZeroId = authZeroId,
                 UserEmail = userEmail,
-                UserNickname = userNickname
+                UserNickname = userNickname,
+                UserPicture = userPicture
             };
 
-            _context.Add(userViewModel);
-            await _context.SaveChangesAsync();
+            await _userRepository.AddUserAsync(userViewModel);
+
             _logger.LogInformation("New user: {0}, added to database", userViewModel.AuthZeroId);
 
             return CreatedAtAction("CreateUser", userViewModel);

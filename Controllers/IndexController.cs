@@ -4,46 +4,52 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using BugtrackerHF.DAL.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Principal;
+using BugtrackerHF.DAL.Repositories;
 
 namespace BugtrackerHF.Controllers
 {
     public class IndexController : Controller
     {
-        private readonly BugtrackerHFContext _context;
         private readonly ILogger<IndexController> _logger;
+        private readonly IUserRepository _userRepository;
 
-        public IndexController(BugtrackerHFContext context, ILogger<IndexController> logger)
+        public IndexController(
+            ILogger<IndexController> logger, 
+            IUserRepository userRepository)
         {
-            _context = context;
             _logger = logger;
+            _userRepository = userRepository;
         }
 
         [Authorize]
-        public IActionResult Issues()
+        public async Task<IActionResult> Issues()
         {
+            //explicit loading
+            var user = await _userRepository.LoadIssuesByAuthZeroIdAsync(GetAuthZeroId());
 
+            return View(user);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Dashboard()
+        {
+            var user = await _userRepository.GetByAuthZeroIdAsync(GetAuthZeroId());
+
+            return View(user);
+        }
+
+        private string GetAuthZeroId()
+        {
             var authZeroId = User.Claims.FirstOrDefault(
                 c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
-            //explicit loading
-            var user = _context.UserViewModel.Single(u => u.AuthZeroId == authZeroId);
-
-            _context.Entry(user)
-                .Collection(u => u.IssueList)
-                .Load();
-
-            return View(user);
+            return authZeroId;
         }
 
-        [Authorize]
-        public IActionResult Dashboard()
-        {
-            var authZeroId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var user = _context.UserViewModel.SingleOrDefault(
-                m => m.AuthZeroId == authZeroId);
-
-            return View(user);
-        }
+        // var identity = HttpContext.User.Identity as ClaimsIdentity;
+        // identity.AddClaim(new Claim("UserViewModelId", user.Id.ToString()));
 
         //[HttpPost]
         //[Authorize]
@@ -59,7 +65,7 @@ namespace BugtrackerHF.Controllers
         //    return
         //}
 
-        
+
         [Authorize]
         public IActionResult Claims()
         {

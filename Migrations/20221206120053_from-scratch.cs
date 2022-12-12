@@ -10,12 +10,9 @@ namespace BugtrackerHF.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "ParentMassageId",
+                name: "ParentId",
                 table: "MessageViewModel");
 
-            migrationBuilder.DropColumn(
-                name: "ReportedByUserId",
-                table: "IssueViewModel");
 
             migrationBuilder.AlterColumn<int>(
                 name: "UserRole",
@@ -97,11 +94,6 @@ namespace BugtrackerHF.Migrations
                 oldType: "int",
                 oldNullable: true);
 
-            migrationBuilder.AddColumn<string>(
-                name: "AuthZeroId",
-                table: "AdminViewModel",
-                type: "nvarchar(max)",
-                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -151,7 +143,7 @@ namespace BugtrackerHF.Migrations
                 oldType: "datetime2");
 
             migrationBuilder.AddColumn<int>(
-                name: "ParentMassageId",
+                name: "ParentId",
                 table: "MessageViewModel",
                 type: "int",
                 nullable: false,
