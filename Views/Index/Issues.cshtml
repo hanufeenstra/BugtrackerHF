@@ -20,6 +20,7 @@
 
 <p>Just putting this out there</p>
 <p>@Model.AuthZeroId</p>
+<p>@User.Claims.FirstOrDefault(c => c.Type == "UserViewModelId")?.Value</p>
 
 <div class="content-wrapper">
 <div class="page-header">

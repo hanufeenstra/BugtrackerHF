@@ -19,10 +19,10 @@ namespace BugtrackerHF.Controllers
             _logger = logger;
         }
 
-        public async Task Login(string returnUrl = "/index/dashboard")
+        public async Task Login()
         {
             var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
-                .WithRedirectUri(returnUrl)
+                .WithRedirectUri(Url.Action("Dashboard","Index"))
                 .Build();
 
             await HttpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
@@ -32,8 +32,6 @@ namespace BugtrackerHF.Controllers
         public async Task Logout()
         {
             var authenticationProperties = new LogoutAuthenticationPropertiesBuilder()
-                // Indicate here where Auth0 should redirect the user after a logout.
-                // Note that the resulting absolute Uri must be whitelisted in 
                 .WithRedirectUri(Url.Action("LoggedOut", "Logout"))
                 .Build();
 

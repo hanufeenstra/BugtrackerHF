@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Principal;
 using BugtrackerHF.DAL.Repositories;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BugtrackerHF.Controllers
 {
@@ -37,9 +39,6 @@ namespace BugtrackerHF.Controllers
         {
             var user = await _userRepository.GetByAuthZeroIdAsync(GetAuthZeroId());
 
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-            identity.AddClaim(new Claim("UserViewModelId", user.Id.ToString()));
-
             return View(user);
         }
 
@@ -59,28 +58,5 @@ namespace BugtrackerHF.Controllers
         // var identity = HttpContext.User.Identity as ClaimsIdentity;
         // identity.AddClaim(new Claim("UserViewModelId", user.Id.ToString()));
 
-        //[HttpPost]
-        //[Authorize]
-        //[ValidateAntiForgeryToken]
-        //public async Task CreateIssue([Bind(", ,")] IssueViewModel issueViewModel, int id)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.IssueViewModel.Add(issueViewModel);
-        //        await _context.SaveChangesAsync();
-        //    }
-
-        //    return
-        //}
-
-
-        [Authorize]
-        public IActionResult Claims()
-        {
-            return RedirectToAction("Dashboard", "Index");
-        }
     }
-
-
-
 }

@@ -4,15 +4,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BugtrackerHF.DAL.Repositories;
 
-
-public interface IIssueRepository
-{
-    Task<IssueViewModel> AddAsync(IssueViewModel issue);
-    Task<IssueViewModel> LoadMessagesAsync(IssueViewModel issue);
-    Task<IssueViewModel> GetByIdAsync(int id);
-}
-
-
 public class IssueRepository : IIssueRepository
 {
     private readonly BugtrackerHFContext _context;

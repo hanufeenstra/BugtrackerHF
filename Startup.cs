@@ -5,7 +5,9 @@ using BugtrackerHF.DAL;
 using BugtrackerHF.DAL.Data;
 using BugtrackerHF.DAL.Repositories;
 using BugtrackerHF.Models;
+using BugtrackerHF.Services;
 using BugtrackerHF.Support;
+using Microsoft.AspNetCore.Authentication;
 
 namespace BugtrackerHF
 {
@@ -31,14 +33,15 @@ namespace BugtrackerHF
             services.AddDbContext<BugtrackerHFContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("BugtrackerHFContext") ?? throw new InvalidOperationException("Connection string 'BugtrackerHFContext' not found.")));
 
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IIssueRepository, IssueRepository>();
-            services.AddTransient<IMessageRepository, MessageRepository>();
-
             services.AddDistributedMemoryCache();
             services.AddMvcCore();
             services.AddRazorPages();
 
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IIssueRepository, IssueRepository>();
+            services.AddTransient<IMessageRepository, MessageRepository>();
+
+            services.AddScoped<IClaimsTransformation, ClaimsTransformation>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -68,29 +71,28 @@ namespace BugtrackerHF
                     pattern: "{controller=Login}/{action=Login}");
 
                 routes.MapControllerRoute(
-                    name: "CreateIssue",
-                    pattern: "{controller=Issue}/{action=CreateIssue}");
-
-                routes.MapControllerRoute(
-                    name: "Register",
-                    pattern: "{controller=Register}/{action=Register}");
-
-                routes.MapControllerRoute(
                     name: "Dashboard",
                     pattern: "{controller=Index}/{action=Dashboard}");
-
-                routes.MapControllerRoute(
-                    name: "ForgotPassword",
-                    pattern: "{controller=ForgotPassword}/{action=ForgotPassword}");
 
                 routes.MapControllerRoute(
                     name: "Index",
                     pattern: "{controller=Index}/{action=Index}");
 
                 routes.MapControllerRoute(
+                    name: "Issue",
+                    pattern: "{controller=Issue}/{action=Create}");
+
+                routes.MapControllerRoute(
                     name: "Login",
                     pattern: "{controller=Login}/{action=Login}");
 
+                routes.MapControllerRoute(
+                    name: "Logout",
+                    pattern: "{controller=Logout}/{action=Logout}");
+
+                routes.MapControllerRoute(
+                    name: "Profile",
+                    pattern: "{controller=Profile}/{action=View}");
             });
         }
     }

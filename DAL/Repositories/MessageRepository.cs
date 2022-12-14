@@ -4,14 +4,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BugtrackerHF.DAL.Repositories;
 
-public interface IMessageRepository
-{
-    void Create(MessageViewModel message);
-    Task<MessageViewModel> ReadSingleByIdAsync (int messageId);
-    void Update(MessageViewModel messageViewModel);
-    void Delete(int messageId);
-}
-
 public class MessageRepository : IMessageRepository
 {
     private readonly BugtrackerHFContext _context;
