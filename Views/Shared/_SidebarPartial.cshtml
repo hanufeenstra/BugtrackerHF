@@ -1,4 +1,4 @@
-﻿@model UserViewModel
+﻿
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
     <a class="sidebar-brand brand-logo" href="index.html"><img src="assets/images/logo.svg" alt="logo" /></a>
@@ -9,11 +9,11 @@
       <div class="profile-desc">
         <div class="profile-pic">
           <div class="count-indicator">
-                        <img class="img-xs rounded-circle " src=@Model.UserPicture alt="">
+                        <img class="img-xs rounded-circle " src=@User.Claims.FirstOrDefault(c=> c.Type == "picture").Value alt="">
             <span class="count bg-success"></span>
           </div>
           <div class="profile-name">
-            <h5 class="mb-0 font-weight-normal">@Model.UserNickname</h5>
+            <h5 class="mb-0 font-weight-normal">@User.Claims.FirstOrDefault(c=> c.Type == "nickname").Value</h5>
             <span>Gold Member</span>
           </div>
         </div>

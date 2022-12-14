@@ -31,7 +31,7 @@ namespace BugtrackerHF.Controllers.API
         {
             _logger.LogInformation("API Received: {0}", authZeroId);
 
-            var model = _userRepository.GetByAuthZeroId(authZeroId);
+            var model = await _userRepository.GetByAuthZeroIdAsync(authZeroId);
 
             if (model != null)
             {

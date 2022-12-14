@@ -33,13 +33,21 @@ namespace BugtrackerHF.Controllers
         }
 
         [Authorize]
-        public IActionResult Dashboard()
+        public async Task<IActionResult> Dashboard()
         {
-            var user = _userRepository.GetByAuthZeroId(GetAuthZeroId());
+            var user = await _userRepository.GetByAuthZeroIdAsync(GetAuthZeroId());
+
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            identity.AddClaim(new Claim("UserViewModelId", user.Id.ToString()));
 
             return View(user);
         }
 
+
+        /// <summary>
+        /// Helper function to return authZeroId from the claim
+        /// </summary>
+        /// <returns>authZeroId from User.Claims => ClaimType == NameIdentifier</returns>
         private string GetAuthZeroId()
         {
             var authZeroId = User.Claims.FirstOrDefault(

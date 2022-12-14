@@ -1,7 +1,16 @@
 ﻿using BugtrackerHF.DAL.Data;
 using BugtrackerHF.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BugtrackerHF.DAL.Repositories;
+
+public interface IMessageRepository
+{
+    void Create(MessageViewModel message);
+    Task<MessageViewModel> ReadSingleByIdAsync (int messageId);
+    void Update(MessageViewModel messageViewModel);
+    void Delete(int messageId);
+}
 
 public class MessageRepository : IMessageRepository
 {
@@ -17,9 +26,11 @@ public class MessageRepository : IMessageRepository
         _context.SaveChanges();
     }
 
-    public MessageViewModel ReadSingleById(int messageId)
+    public async Task<MessageViewModel> ReadSingleByIdAsync(int messageId)
     {
-        var message = _context.MessageViewModel.Find(messageId);
+        var message = await _context.MessageViewModel
+            .SingleOrDefaultAsync(m => m.Id == messageId);
+
         return message;
     }
 

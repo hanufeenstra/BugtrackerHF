@@ -1,5 +1,4 @@
 ﻿@using System.Security.Claims
-@model UserViewModel
 <nav class="navbar p-0 fixed-top d-flex flex-row">
   <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
     <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
@@ -10,7 +9,7 @@
     </button>
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item dropdown d-none d-lg-block">
-          <a asp-action="CreateIssue" asp-controller="CreateIssue" class="btn btn-inverse-success btn-fw">Log New Issue</a>
+          <a asp-action="Create" asp-controller="Issue" class="btn btn-inverse-success btn-fw">Log New Issue</a>
       </li>
       <li class="nav-item nav-settings d-none d-lg-block">
         <a class="nav-link" asp-action="Dashboard" asp-controller="Index">
@@ -108,8 +107,8 @@
       <li class="nav-item dropdown">
         <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
           <div class="navbar-profile">
-              <img class="img-xs rounded-circle" src=@Model.UserPicture alt="">
-            <p class="mb-0 d-none d-sm-block navbar-profile-name">@Model.UserNickname </p>
+              <img class="img-xs rounded-circle" src=@User.Claims.FirstOrDefault(c=> c.Type == "picture").Value alt="">
+            <p class="mb-0 d-none d-sm-block navbar-profile-name">@User.Claims.FirstOrDefault(c=> c.Type == "nickname").Value </p>
             <i class="mdi mdi-menu-down d-none d-sm-block"></i>
           </div>
         </a>

@@ -29,7 +29,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Issue Details</h4>
-                <form asp-controller="CreateIssue" asp-action="CreateIssue" method="post" class="forms-sample">
+                <form asp-controller="Issue" asp-action="Create" method="post" class="forms-sample">
                     <div class="form-group">
                         <label>Project</label>
                         <select class="form-control form-control-sm text-white" id="exampleFormControlSelect3">
@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleTextarea1">Description</label>
-                        <input asp-for="MessageList" class="form-control text-white" id="exampleTextarea1" cols="5" rows="7" placeholder="Describe the problem">
+                        <input asp-for="Description" class="form-control text-white" id="exampleTextarea1" cols="5" rows="7" placeholder="Describe the problem">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-outline-info">Attach Files</button>

@@ -50,6 +50,8 @@ public class IssueViewModel
 
     public int Id { get; set; }
     public string? IssueName { get; set; }
+    [NotMapped]
+    public string? Description { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime LastUpdateDate { get; set; }
     public Severity CurrentSeverity { get; set; }
@@ -81,6 +83,12 @@ public class IssueViewModel
     {
         //AssignedToUserId = userId;
         LastUpdateDate = DateTime.Now;
+    }
+
+    public void AddInitMessage(int id)
+    {
+        var initMessage = "Created on "+ DateTime.Now +"\\r\\n" + Description;
+        MessageList.Add(new MessageViewModel(id, initMessage));
     }
 }
 

@@ -69,7 +69,7 @@ namespace BugtrackerHF
 
                 routes.MapControllerRoute(
                     name: "CreateIssue",
-                    pattern: "{controller=CreateIssue}/{action=CreateIssue}");
+                    pattern: "{controller=Issue}/{action=CreateIssue}");
 
                 routes.MapControllerRoute(
                     name: "Register",

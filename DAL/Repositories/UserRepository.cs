@@ -4,6 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BugtrackerHF.DAL.Repositories;
 
+public interface IUserRepository
+{
+    Task<UserViewModel> AddUserAsync(UserViewModel user);
+    Task<UserViewModel> GetByAuthZeroIdAsync(string authZeroId);
+    Task<UserViewModel> LoadIssuesAsync(UserViewModel user);
+    Task<UserViewModel> LoadIssuesByAuthZeroIdAsync(string authZeroId);
+    void Update(int id, string email, string nickname);
+    void Update(UserViewModel user);
+    void Delete(int id);
+
+}
+
 public class UserRepository: IUserRepository
 {
     private readonly BugtrackerHFContext _context;
@@ -21,15 +33,19 @@ public class UserRepository: IUserRepository
         return user;
     }
 
-    public UserViewModel GetByAuthZeroId(string authZeroId)
+    public async Task<UserViewModel> GetByAuthZeroIdAsync(string authZeroId)
     {
-        var user = _context.UserViewModel.SingleOrDefault(u => u.AuthZeroId == authZeroId);
+        var user = await _context.UserViewModel
+            .SingleOrDefaultAsync(u => u.AuthZeroId == authZeroId);
+
         return user;
     }
 
     public async Task<UserViewModel> LoadIssuesByAuthZeroIdAsync(string authZeroId)
     {
-        var user = await _context.UserViewModel.SingleAsync(u => u.AuthZeroId == authZeroId);
+        var user = await _context.UserViewModel
+            .SingleAsync(u => u.AuthZeroId == authZeroId);
+
         user = await LoadIssuesAsync(user);
         return user;
     }
