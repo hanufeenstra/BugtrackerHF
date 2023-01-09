@@ -1,14 +1,11 @@
-﻿using System.Net;
-using BugtrackerHF.DAL.Data;
+﻿using BugtrackerHF.DAL.Data;
 using BugtrackerHF.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Protocol;
 
-namespace BugtrackerHF.Controllers.API
+namespace BugtrackerHF.Controllers.API.v1
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class IssueController : ControllerBase
     {
@@ -25,17 +22,16 @@ namespace BugtrackerHF.Controllers.API
         [HttpGet]
         public async Task<ActionResult> GetIssue()
         {
-            var model = await _context.IssueViewModel.ToListAsync();
+            var model = await _context.IssueModel.ToListAsync();
 
             return Ok(model);
         }
 
         //GET: /api/issue/5
         [HttpGet("{Id}")]
-
         public async Task<ActionResult> GetIssue(int id)
         {
-            var model = await _context.IssueViewModel.FirstOrDefaultAsync(m => m.Id == id);
+            var model = await _context.IssueModel.FirstOrDefaultAsync(m => m.Id == id);
 
             
 
@@ -49,10 +45,10 @@ namespace BugtrackerHF.Controllers.API
         [HttpPost]
         public async Task<ActionResult> CreateIssue(string issueName, string comment, int creatorId)
         {
-            var issue = new IssueViewModel( 
+            var issue = new IssueModel( 
                 issueName, 
                 creatorId,
-                new MessageViewModel(creatorId, "Issue: " + comment + ", opened by: " + creatorId.ToString())
+                new MessageModel(creatorId, "Issue: " + comment + ", opened by: " + creatorId.ToString())
             );
 
 
@@ -61,7 +57,7 @@ namespace BugtrackerHF.Controllers.API
                 return BadRequest(ModelState);
             }
 
-            _context.IssueViewModel.Add(issue);
+            _context.IssueModel.Add(issue);
             await _context.SaveChangesAsync();
             return CreatedAtAction("CreateIssue", issue);
             

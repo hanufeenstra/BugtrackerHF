@@ -1,15 +1,10 @@
-﻿using System.Net;
-using BugtrackerHF.DAL.Data;
-using BugtrackerHF.DAL.Repositories;
+﻿using BugtrackerHF.DAL.Repositories;
 using BugtrackerHF.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BugtrackerHF.Controllers.API
+namespace BugtrackerHF.Controllers.API.v1
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -39,7 +34,7 @@ namespace BugtrackerHF.Controllers.API
                 return Ok();
             }
 
-            var userViewModel = new UserViewModel()
+            var userViewModel = new UserModel()
             {
                 AuthZeroId = authZeroId,
                 UserEmail = userEmail,

@@ -10,14 +10,14 @@ namespace BugtrackerHF.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "Viewed",
-                table: "MessageViewModel");
+                table: "MessageModel");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<bool>(
                 name: "Viewed",
-                table: "MessageViewModel",
+                table: "MessageModel",
                 type: "bit",
                 nullable: false,
                 defaultValue: false);

@@ -4,7 +4,7 @@ namespace BugtrackerHF.DAL.Repositories;
 
 public interface IIssueRepository
 {
-    Task<IssueViewModel> AddAsync(IssueViewModel issue);
-    Task<IssueViewModel> LoadMessagesAsync(IssueViewModel issue);
-    Task<IssueViewModel> GetByIdAsync(int id);
+    Task<IssueModel> AddAsync(IssueModel issue);
+    Task<IssueModel> LoadMessagesAsync(IssueModel issue);
+    Task<IssueModel> GetByIdAsync(int id);
 }

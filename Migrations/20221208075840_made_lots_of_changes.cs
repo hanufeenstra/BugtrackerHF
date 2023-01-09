@@ -10,15 +10,15 @@ namespace BugtrackerHF.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_MessageViewModel_UserViewModel_UserViewModelId",
-                table: "MessageViewModel");
+                table: "MessageModel");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_ProjectViewModel_AdminViewModel_ProjectAdminId",
-                table: "ProjectViewModel");
+                table: "ProjectModel");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_UserViewModel_AdminViewModel_AdminViewModelId",
-                table: "UserViewModel");
+                table: "UserModel");
 
             migrationBuilder.DropTable(
                 name: "AdminViewModel");
@@ -28,40 +28,40 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.DropIndex(
                 name: "IX_UserViewModel_AdminViewModelId",
-                table: "UserViewModel");
+                table: "UserModel");
 
             migrationBuilder.DropIndex(
                 name: "IX_ProjectViewModel_ProjectAdminId",
-                table: "ProjectViewModel");
+                table: "ProjectModel");
 
             migrationBuilder.DropIndex(
                 name: "IX_MessageViewModel_UserViewModelId",
-                table: "MessageViewModel");
+                table: "MessageModel");
 
             migrationBuilder.DropColumn(
                 name: "AdminViewModelId",
-                table: "UserViewModel");
+                table: "UserModel");
 
             migrationBuilder.DropColumn(
                 name: "ProjectAdminId",
-                table: "ProjectViewModel");
+                table: "ProjectModel");
 
             migrationBuilder.DropColumn(
                 name: "ReceiverUserId",
-                table: "MessageViewModel");
+                table: "MessageModel");
 
             migrationBuilder.DropColumn(
                 name: "UserViewModelId",
-                table: "MessageViewModel");
+                table: "MessageModel");
 
             migrationBuilder.RenameColumn(
                 name: "SenderUserId",
-                table: "MessageViewModel",
+                table: "MessageModel",
                 newName: "CreatedByUserId");
 
             migrationBuilder.AddColumn<int>(
                 name: "ProjectManagerId",
-                table: "ProjectViewModel",
+                table: "ProjectModel",
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
@@ -71,35 +71,35 @@ namespace BugtrackerHF.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "ProjectManagerId",
-                table: "ProjectViewModel");
+                table: "ProjectModel");
 
             migrationBuilder.RenameColumn(
                 name: "CreatedByUserId",
-                table: "MessageViewModel",
+                table: "MessageModel",
                 newName: "SenderUserId");
 
             migrationBuilder.AddColumn<int>(
                 name: "AdminViewModelId",
-                table: "UserViewModel",
+                table: "UserModel",
                 type: "int",
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
                 name: "ProjectAdminId",
-                table: "ProjectViewModel",
+                table: "ProjectModel",
                 type: "int",
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
                 name: "ReceiverUserId",
-                table: "MessageViewModel",
+                table: "MessageModel",
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
                 name: "UserViewModelId",
-                table: "MessageViewModel",
+                table: "MessageModel",
                 type: "int",
                 nullable: true);
 
@@ -131,23 +131,23 @@ namespace BugtrackerHF.Migrations
                     table.ForeignKey(
                         name: "FK_NotificationViewModels_UserViewModel_UserViewModelId",
                         column: x => x.UserViewModelId,
-                        principalTable: "UserViewModel",
+                        principalTable: "UserModel",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserViewModel_AdminViewModelId",
-                table: "UserViewModel",
+                table: "UserModel",
                 column: "AdminViewModelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProjectViewModel_ProjectAdminId",
-                table: "ProjectViewModel",
+                table: "ProjectModel",
                 column: "ProjectAdminId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MessageViewModel_UserViewModelId",
-                table: "MessageViewModel",
+                table: "MessageModel",
                 column: "UserViewModelId");
 
             migrationBuilder.CreateIndex(
@@ -157,21 +157,21 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AddForeignKey(
                 name: "FK_MessageViewModel_UserViewModel_UserViewModelId",
-                table: "MessageViewModel",
+                table: "MessageModel",
                 column: "UserViewModelId",
-                principalTable: "UserViewModel",
+                principalTable: "UserModel",
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ProjectViewModel_AdminViewModel_ProjectAdminId",
-                table: "ProjectViewModel",
+                table: "ProjectModel",
                 column: "ProjectAdminId",
                 principalTable: "AdminViewModel",
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_UserViewModel_AdminViewModel_AdminViewModelId",
-                table: "UserViewModel",
+                table: "UserModel",
                 column: "AdminViewModelId",
                 principalTable: "AdminViewModel",
                 principalColumn: "Id");

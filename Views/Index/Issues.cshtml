@@ -1,4 +1,4 @@
-﻿@model UserViewModel
+﻿@model UserModel
 @{
   ViewData["Title"] = "Issues";
 }
@@ -18,9 +18,9 @@
     <link rel="stylesheet" href="~/assets/vendors/css/vendor.bundle.base.css">
 }
 
-<p>Just putting this out there</p>
+<!---p>Just putting this out there</p>
 <p>@Model.AuthZeroId</p>
-<p>@User.Claims.FirstOrDefault(c => c.Type == "UserViewModelId")?.Value</p>
+<p>@User.Claims.FirstOrDefault(c => c.Type == "UserViewModelId")?.Value</p--->
 
 <div class="content-wrapper">
 <div class="page-header">

@@ -59,6 +59,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DAL\UnitOfWork\" />
     <Folder Include="Services\" />
     <Folder Include="Support\" />
   </ItemGroup>

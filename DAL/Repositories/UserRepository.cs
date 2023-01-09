@@ -13,25 +13,25 @@ public class UserRepository: IUserRepository
         _context = context;
     }
 
-    public async Task<UserViewModel> AddUserAsync(UserViewModel user)
+    public async Task<UserModel> AddUserAsync(UserModel user)
     {
-        _context.UserViewModel.Add(user);
+        _context.UserModel.Add(user);
         await _context.SaveChangesAsync();
 
         return user;
     }
 
-    public async Task<UserViewModel> GetByAuthZeroIdAsync(string authZeroId)
+    public async Task<UserModel> GetByAuthZeroIdAsync(string authZeroId)
     {
-        var user = await _context.UserViewModel
+        var user = await _context.UserModel
             .SingleOrDefaultAsync(u => u.AuthZeroId == authZeroId);
 
         return user;
     }
 
-    public async Task<UserViewModel> LoadIssuesByAuthZeroIdAsync(string authZeroId)
+    public async Task<UserModel> LoadIssuesByAuthZeroIdAsync(string authZeroId)
     {
-        var user = await _context.UserViewModel
+        var user = await _context.UserModel
             .SingleAsync(u => u.AuthZeroId == authZeroId);
 
         user = await LoadIssuesAsync(user);
@@ -39,11 +39,11 @@ public class UserRepository: IUserRepository
     }
 
     /// <summary>
-    /// Loads the UserViewModel.IssueList explicitly for the given user 
+    /// Loads the UserModel.IssueList explicitly for the given user 
     /// </summary>
     /// <param name="user"></param>
     /// <returns></returns>
-    public async Task<UserViewModel> LoadIssuesAsync(UserViewModel user)
+    public async Task<UserModel> LoadIssuesAsync(UserModel user)
     {
         await _context.Entry(user)
             .Collection(u => u.IssueList)
@@ -62,7 +62,7 @@ public class UserRepository: IUserRepository
     /// <param name="nickname"></param>
     public void Update(int id, string email, string nickname)
     {
-        var updatedUser = _context.UserViewModel.Find(id);
+        var updatedUser = _context.UserModel.Find(id);
 
         updatedUser.UserEmail = email;
         updatedUser.UserNickname = nickname;
@@ -70,12 +70,12 @@ public class UserRepository: IUserRepository
     }
 
     /// <summary>
-    /// Update UserViewModel
+    /// Update UserModel
     /// </summary>
     /// <param name="user"></param>
-    public void Update(UserViewModel user)
+    public void Update(UserModel user)
     {
-        var updatedUser = _context.UserViewModel.Find(user.Id);
+        var updatedUser = _context.UserModel.Find(user.Id);
         updatedUser = user;
         _context.SaveChanges();
     }

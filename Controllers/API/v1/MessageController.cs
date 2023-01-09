@@ -1,14 +1,11 @@
-﻿using System.Security.Claims;
-using BugtrackerHF.DAL.Data;
+﻿using BugtrackerHF.DAL.Data;
 using BugtrackerHF.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BugtrackerHF.Controllers.API
+namespace BugtrackerHF.Controllers.API.v1
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class MessageController : ControllerBase
     {
@@ -26,9 +23,9 @@ namespace BugtrackerHF.Controllers.API
         [Authorize]
         public async Task<IActionResult> CreateMessage(int receiverId, string text,int parentMessageId)
         {
-            var message = new MessageViewModel( );
+            var message = new MessageModel( );
 
-            _context.MessageViewModel.Add(message);
+            _context.MessageModel.Add(message);
              
             await _context.SaveChangesAsync();
             return CreatedAtAction("CreateMessage", message);

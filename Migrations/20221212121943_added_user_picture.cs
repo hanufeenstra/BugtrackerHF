@@ -10,7 +10,7 @@ namespace BugtrackerHF.Migrations
         {
             migrationBuilder.AddColumn<string>(
                 name: "UserPicture",
-                table: "UserViewModel",
+                table: "UserModel",
                 type: "nvarchar(max)",
                 nullable: true);
         }
@@ -19,7 +19,7 @@ namespace BugtrackerHF.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "UserPicture",
-                table: "UserViewModel");
+                table: "UserModel");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BugtrackerHF.DAL.Repositories;
 using BugtrackerHF.Models;
+using BugtrackerHF.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +10,9 @@ namespace BugtrackerHF.Controllers
     {
         private readonly IIssueRepository _issueRepository;
         private readonly IUserRepository _userRepository;
-        private readonly ILogger<IssueViewModel> _logger;
+        private readonly ILogger<IssueModel> _logger;
 
-        public IssueController(ILogger<IssueViewModel> logger, IIssueRepository issueRepository, IUserRepository userRepository)
+        public IssueController(ILogger<IssueModel> logger, IIssueRepository issueRepository, IUserRepository userRepository)
         {
             _logger = logger;
             _issueRepository = issueRepository;
@@ -19,21 +20,47 @@ namespace BugtrackerHF.Controllers
         }
 
         [Authorize]
-        public IActionResult Create()
+        public IActionResult CreateIssue()
         {
-            return View();
+            var projectList = new List<ProjectModel>
+            {
+                new ProjectModel(){ Id = 1, ProjectName = "TestProject" }
+            };
+
+            var viewModel = new CreateIssueViewModel()
+            {
+                ProjectList = projectList
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] IssueViewModel issue)
+        public async Task<IActionResult> CreateIssue([FromForm] CreateIssueViewModel model)
         {
-            
+            Console.WriteLine(model.SelectedProject.ProjectName);
             var userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserViewModelId").Value);
-            issue.LastUpdateDate = DateTime.Now;
-            issue.AddInitMessage(userId);
+            var messageList = new List<MessageModel>();
+            var message = new MessageModel()
+            {
+                CreatedByUserId = userId,
+                CreatedTime = DateTime.Now,
+                Message = model.Description
+            };
+            messageList.Add(message);
+
+            var issue = new IssueModel()
+            {
+                MessageList = messageList,
+                CreatedDate = DateTime.Now,
+                CurrentStatus = Status.Unopened,
+                CurrentSeverity = Severity.Cosmetic,
+                IssueName = model.Description,
+                LastUpdateDate = DateTime.Now
+            };
 
             var newIssue = await _issueRepository.AddAsync(issue);
+
 
             return RedirectToAction("View","Issue", newIssue.Id);
         }

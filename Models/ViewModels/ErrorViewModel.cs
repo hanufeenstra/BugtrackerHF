@@ -1,4 +1,4 @@
-namespace BugtrackerHF.Models
+namespace BugtrackerHF.Models.ViewModels
 {
     public class ErrorViewModel : IErrorViewModel
     {

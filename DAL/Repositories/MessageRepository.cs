@@ -12,21 +12,21 @@ public class MessageRepository : IMessageRepository
         _context = context;
     }
 
-    public void Create(MessageViewModel message)
+    public void Create(MessageModel message)
     {
         _context.Add(message);
         _context.SaveChanges();
     }
 
-    public async Task<MessageViewModel> ReadSingleByIdAsync(int messageId)
+    public async Task<MessageModel> ReadSingleByIdAsync(int messageId)
     {
-        var message = await _context.MessageViewModel
+        var message = await _context.MessageModel
             .SingleOrDefaultAsync(m => m.Id == messageId);
 
         return message;
     }
 
-    public void Update(MessageViewModel messageViewModel)
+    public void Update(MessageModel messageModel)
     {
     }
 

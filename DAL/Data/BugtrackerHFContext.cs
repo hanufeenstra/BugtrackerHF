@@ -11,9 +11,9 @@ public class BugtrackerHFContext : DbContext
         ChangeTracker.LazyLoadingEnabled = false;
     }
 
-    public DbSet<ProjectViewModel>? ProjectViewModel { get; set; }
-    public DbSet<UserViewModel>? UserViewModel { get; set; }
-    public DbSet<IssueViewModel>? IssueViewModel { get; set; }
-    public DbSet<MessageViewModel>? MessageViewModel { get; set; }
+    public DbSet<ProjectModel>? ProjectModel { get; set; }
+    public DbSet<UserModel>? UserModel { get; set; }
+    public DbSet<IssueModel>? IssueModel { get; set; }
+    public DbSet<MessageModel>? MessageModel { get; set; }
 
 }

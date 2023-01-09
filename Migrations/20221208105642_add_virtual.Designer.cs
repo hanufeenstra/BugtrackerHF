@@ -24,7 +24,7 @@ namespace BugtrackerHF.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("BugtrackerHF.Models.IssueViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.IssueModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,10 +57,10 @@ namespace BugtrackerHF.Migrations
 
                     b.HasIndex("UserViewModelId");
 
-                    b.ToTable("IssueViewModel");
+                    b.ToTable("IssueModel");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.MessageViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.MessageModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,10 +87,10 @@ namespace BugtrackerHF.Migrations
 
                     b.HasIndex("IssueViewModelId");
 
-                    b.ToTable("MessageViewModel");
+                    b.ToTable("MessageModel");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.ProjectViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.ProjectModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -106,10 +106,10 @@ namespace BugtrackerHF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProjectViewModel");
+                    b.ToTable("ProjectModel");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.UserViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.UserModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -132,29 +132,29 @@ namespace BugtrackerHF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserViewModel");
+                    b.ToTable("UserModel");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.IssueViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.IssueModel", b =>
                 {
-                    b.HasOne("BugtrackerHF.Models.UserViewModel", null)
+                    b.HasOne("BugtrackerHF.Models.UserModel", null)
                         .WithMany("IssueList")
                         .HasForeignKey("UserViewModelId");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.MessageViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.MessageModel", b =>
                 {
-                    b.HasOne("BugtrackerHF.Models.IssueViewModel", null)
+                    b.HasOne("BugtrackerHF.Models.IssueModel", null)
                         .WithMany("MessageList")
                         .HasForeignKey("IssueViewModelId");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.IssueViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.IssueModel", b =>
                 {
                     b.Navigation("MessageList");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.UserViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.UserModel", b =>
                 {
                     b.Navigation("IssueList");
                 });

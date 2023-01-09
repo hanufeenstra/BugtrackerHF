@@ -31,7 +31,7 @@ namespace BugtrackerHF
             });
 
             services.AddDbContext<BugtrackerHFContext>(options => 
-                options.UseSqlServer(Configuration.GetConnectionString("BugtrackerHFContext") ?? throw new InvalidOperationException("Connection string 'BugtrackerHFContext' not found.")));
+                options.UseSqlServer(Configuration.GetConnectionString("BugtrackerHFContextDev") ?? throw new InvalidOperationException("Connection string 'BugtrackerHFContext' not found.")));
 
             services.AddDistributedMemoryCache();
             services.AddMvcCore();

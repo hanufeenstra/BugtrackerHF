@@ -4,16 +4,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BugtrackerHF.Models;
 
-public class IssueViewModel
+public class IssueModel
 {
-    public IssueViewModel()
+    public IssueModel()
     {
     }
 
-    public IssueViewModel(
+    public IssueModel(
         string name,
         int reportedByUserId,
-        MessageViewModel parentMessage)
+        MessageModel parentMessage)
     {
         IssueName = name;
         CreatedDate = DateTime.Now;
@@ -21,22 +21,21 @@ public class IssueViewModel
         CurrentSeverity = Severity.Cosmetic;
         CurrentStatus = Status.Unopened;
         ReportedByUserId = reportedByUserId;
-        MessageList = new List<MessageViewModel>();
-        MessageList.Add(parentMessage);
+        MessageList = new List<MessageModel>
+        {
+            parentMessage
+        };
     }
 
     public int Id { get; set; }
     [Required]
     public string? IssueName { get; set; }
-    [NotMapped]
-    [Required]
-    public string? Description { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime LastUpdateDate { get; set; }
     public Severity CurrentSeverity { get; set; }
     public Status CurrentStatus { get; set; }
     public int ReportedByUserId { get; }
-    public virtual IList<MessageViewModel>? MessageList { get; set; } = new List<MessageViewModel>();
+    public virtual IList<MessageModel>? MessageList { get; set; } = new List<MessageModel>();
 
     public void IncreaseSeverity()
     {
@@ -62,12 +61,6 @@ public class IssueViewModel
     {
         //AssignedToUserId = userId;
         LastUpdateDate = DateTime.Now;
-    }
-
-    public void AddInitMessage(int id)
-    {
-        MessageList.Add(new MessageViewModel(id,
-                "Created on " + DateTime.Now + ".\\r\\n" + Description));
     }
 }
 

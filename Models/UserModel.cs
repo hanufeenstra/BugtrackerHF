@@ -4,7 +4,7 @@ using BugtrackerHF.Models;
 
 namespace BugtrackerHF.Models;
 
-public class UserViewModel
+public class UserModel
 {
     public int Id { get; set; }
     public string AuthZeroId { get; set; } = "";
@@ -13,6 +13,6 @@ public class UserViewModel
     public string? UserEmail { get; set; }
     public string? UserPicture { get; set; }
     public Role UserRole { get; set; } = Role.User;
-    public virtual IList<IssueViewModel>? IssueList { get; set; } = new List<IssueViewModel>();
-    public virtual IList<UserViewModel>? SubUserList { get; set; } = new List<UserViewModel>();
+    public virtual IList<IssueModel>? IssueList { get; set; } = new List<IssueModel>();
+    public virtual IList<UserModel>? SubUserList { get; set; } = new List<UserModel>();
 }

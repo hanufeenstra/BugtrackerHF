@@ -4,8 +4,8 @@ namespace BugtrackerHF.DAL.Repositories;
 
 public interface IMessageRepository
 {
-    void Create(MessageViewModel message);
-    Task<MessageViewModel> ReadSingleByIdAsync (int messageId);
-    void Update(MessageViewModel messageViewModel);
+    void Create(MessageModel message);
+    Task<MessageModel> ReadSingleByIdAsync (int messageId);
+    void Update(MessageModel messageModel);
     void Delete(int messageId);
 }

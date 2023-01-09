@@ -11,12 +11,12 @@ namespace BugtrackerHF.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "ParentId",
-                table: "MessageViewModel");
+                table: "MessageModel");
 
 
             migrationBuilder.AlterColumn<int>(
                 name: "UserRole",
-                table: "UserViewModel",
+                table: "UserModel",
                 type: "int",
                 nullable: true,
                 defaultValue: 0,
@@ -26,7 +26,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "AuthZeroId",
-                table: "UserViewModel",
+                table: "UserModel",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "",
@@ -36,7 +36,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "SenderUserId",
-                table: "MessageViewModel",
+                table: "MessageModel",
                 type: "int",
                 nullable: false,
                 defaultValue: 0,
@@ -46,7 +46,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "ReceiverUserId",
-                table: "MessageViewModel",
+                table: "MessageModel",
                 type: "int",
                 nullable: false,
                 defaultValue: 0,
@@ -56,7 +56,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedTime",
-                table: "MessageViewModel",
+                table: "MessageModel",
                 type: "datetime2",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -66,7 +66,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "CurrentStatus",
-                table: "IssueViewModel",
+                table: "IssueModel",
                 type: "int",
                 nullable: false,
                 defaultValue: 0,
@@ -76,7 +76,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "CurrentSeverity",
-                table: "IssueViewModel",
+                table: "IssueModel",
                 type: "int",
                 nullable: false,
                 defaultValue: 0,
@@ -86,7 +86,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "AssignedToUserId",
-                table: "IssueViewModel",
+                table: "IssueModel",
                 type: "int",
                 nullable: false,
                 defaultValue: 0,
@@ -104,7 +104,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "UserRole",
-                table: "UserViewModel",
+                table: "UserModel",
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(int),
@@ -112,7 +112,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "AuthZeroId",
-                table: "UserViewModel",
+                table: "UserModel",
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
@@ -120,7 +120,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "SenderUserId",
-                table: "MessageViewModel",
+                table: "MessageModel",
                 type: "int",
                 nullable: true,
                 oldClrType: typeof(int),
@@ -128,7 +128,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "ReceiverUserId",
-                table: "MessageViewModel",
+                table: "MessageModel",
                 type: "int",
                 nullable: true,
                 oldClrType: typeof(int),
@@ -136,7 +136,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedTime",
-                table: "MessageViewModel",
+                table: "MessageModel",
                 type: "datetime2",
                 nullable: true,
                 oldClrType: typeof(DateTime),
@@ -144,14 +144,14 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AddColumn<int>(
                 name: "ParentId",
-                table: "MessageViewModel",
+                table: "MessageModel",
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AlterColumn<int>(
                 name: "CurrentStatus",
-                table: "IssueViewModel",
+                table: "IssueModel",
                 type: "int",
                 nullable: true,
                 oldClrType: typeof(int),
@@ -159,7 +159,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "CurrentSeverity",
-                table: "IssueViewModel",
+                table: "IssueModel",
                 type: "int",
                 nullable: true,
                 oldClrType: typeof(int),
@@ -167,7 +167,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "AssignedToUserId",
-                table: "IssueViewModel",
+                table: "IssueModel",
                 type: "int",
                 nullable: true,
                 oldClrType: typeof(int),
@@ -175,7 +175,7 @@ namespace BugtrackerHF.Migrations
 
             migrationBuilder.AddColumn<int>(
                 name: "ReportedByUserId",
-                table: "IssueViewModel",
+                table: "IssueModel",
                 type: "int",
                 nullable: true);
         }

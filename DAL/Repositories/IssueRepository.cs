@@ -13,9 +13,9 @@ public class IssueRepository : IIssueRepository
         _context = context;
     }
 
-    public async Task<IssueViewModel> AddAsync(IssueViewModel issue)
+    public async Task<IssueModel> AddAsync(IssueModel issue)
     {
-        _context.IssueViewModel.Add(issue);
+        _context.IssueModel.Add(issue);
         await _context.SaveChangesAsync();
 
         return issue;
@@ -26,7 +26,7 @@ public class IssueRepository : IIssueRepository
     /// </summary>
     /// <param name="issue"></param>
     /// <returns></returns>
-    public async Task<IssueViewModel> LoadMessagesAsync(IssueViewModel issue)
+    public async Task<IssueModel> LoadMessagesAsync(IssueModel issue)
     {
         await _context.Entry(issue)
             .Collection(i => i.MessageList)
@@ -35,9 +35,9 @@ public class IssueRepository : IIssueRepository
         return issue;
     }
 
-    public async Task<IssueViewModel> GetByIdAsync(int id)
+    public async Task<IssueModel> GetByIdAsync(int id)
     {
-        var issue = await _context.IssueViewModel
+        var issue = await _context.IssueModel
             .SingleOrDefaultAsync(i => i.Id == id);
 
         return issue;

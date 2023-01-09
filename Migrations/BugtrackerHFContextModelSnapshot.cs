@@ -22,7 +22,7 @@ namespace BugtrackerHF.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("BugtrackerHF.Models.IssueViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.IssueModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,17 +46,17 @@ namespace BugtrackerHF.Migrations
                     b.Property<DateTime>("LastUpdateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UserViewModelId")
+                    b.Property<int?>("UserModelId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserViewModelId");
+                    b.HasIndex("UserModelId");
 
-                    b.ToTable("IssueViewModel");
+                    b.ToTable("IssueModel");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.MessageViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.MessageModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,7 +70,7 @@ namespace BugtrackerHF.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("IssueViewModelId")
+                    b.Property<int?>("IssueModelId")
                         .HasColumnType("int");
 
                     b.Property<string>("Message")
@@ -78,12 +78,12 @@ namespace BugtrackerHF.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IssueViewModelId");
+                    b.HasIndex("IssueModelId");
 
-                    b.ToTable("MessageViewModel");
+                    b.ToTable("MessageModel");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.ProjectViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.ProjectModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -99,10 +99,12 @@ namespace BugtrackerHF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProjectViewModel");
+                    b.HasIndex("ProjectManagerId");
+
+                    b.ToTable("ProjectModel");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.UserViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.UserModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -114,8 +116,14 @@ namespace BugtrackerHF.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProjectModelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserEmail")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserModelId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserNickname")
                         .HasColumnType("nvarchar(max)");
@@ -126,43 +134,62 @@ namespace BugtrackerHF.Migrations
                     b.Property<int>("UserRole")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserViewModelId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserViewModelId");
+                    b.HasIndex("ProjectModelId");
 
-                    b.ToTable("UserViewModel");
+                    b.HasIndex("UserModelId");
+
+                    b.ToTable("UserModel");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.IssueViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.IssueModel", b =>
                 {
-                    b.HasOne("BugtrackerHF.Models.UserViewModel", null)
+                    b.HasOne("BugtrackerHF.Models.UserModel", null)
                         .WithMany("IssueList")
-                        .HasForeignKey("UserViewModelId");
+                        .HasForeignKey("UserModelId");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.MessageViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.MessageModel", b =>
                 {
-                    b.HasOne("BugtrackerHF.Models.IssueViewModel", null)
+                    b.HasOne("BugtrackerHF.Models.IssueModel", null)
                         .WithMany("MessageList")
-                        .HasForeignKey("IssueViewModelId");
+                        .HasForeignKey("IssueModelId");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.UserViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.ProjectModel", b =>
                 {
-                    b.HasOne("BugtrackerHF.Models.UserViewModel", null)
-                        .WithMany("SubUserList")
-                        .HasForeignKey("UserViewModelId");
+                    b.HasOne("BugtrackerHF.Models.UserModel", "ProjectManager")
+                        .WithMany()
+                        .HasForeignKey("ProjectManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProjectManager");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.IssueViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.UserModel", b =>
+                {
+                    b.HasOne("BugtrackerHF.Models.ProjectModel", null)
+                        .WithMany("UserList")
+                        .HasForeignKey("ProjectModelId");
+
+                    b.HasOne("BugtrackerHF.Models.UserModel", null)
+                        .WithMany("SubUserList")
+                        .HasForeignKey("UserModelId");
+                });
+
+            modelBuilder.Entity("BugtrackerHF.Models.IssueModel", b =>
                 {
                     b.Navigation("MessageList");
                 });
 
-            modelBuilder.Entity("BugtrackerHF.Models.UserViewModel", b =>
+            modelBuilder.Entity("BugtrackerHF.Models.ProjectModel", b =>
+                {
+                    b.Navigation("UserList");
+                });
+
+            modelBuilder.Entity("BugtrackerHF.Models.UserModel", b =>
                 {
                     b.Navigation("IssueList");
 

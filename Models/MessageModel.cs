@@ -1,13 +1,13 @@
 ﻿using BugtrackerHF.DAL;
 namespace BugtrackerHF.Models;
 
-public class MessageViewModel
+public class MessageModel
 {
-    public MessageViewModel()
+    public MessageModel()
     {
     }
 
-    public MessageViewModel(int createdByUserId, string message)
+    public MessageModel(int createdByUserId, string message)
     {
         CreatedTime = DateTime.Now;
         CreatedByUserId = createdByUserId;

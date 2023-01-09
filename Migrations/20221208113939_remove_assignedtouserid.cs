@@ -10,14 +10,14 @@ namespace BugtrackerHF.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "AssignedToUserId",
-                table: "IssueViewModel");
+                table: "IssueModel");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
                 name: "AssignedToUserId",
-                table: "IssueViewModel",
+                table: "IssueModel",
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
