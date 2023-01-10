@@ -38,6 +38,6 @@ The hosted version will also be updated regularly, although not as often as the 
 
 This project is licensed under the terms of the MIT license.
 
-See license.mit for more detail.
+See LICENSE.mit for more detail.
 
 ####################################################
