@@ -1,0 +1,280 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.min.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.min.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.min.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.min.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.min.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap.min.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap.min.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.min.css" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.min.css.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.js" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.js.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.min.js" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.min.js.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.js" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.js.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.min.js" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.min.js.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.js" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.js.map" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.min.js" />
+    <Content Remove="C:\Users\hanuf\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.min.js.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="SQLQuery1.sql" />
+    <None Remove="Views\Shared\_LayoutMain.cshtml~RF1ec397ac.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DAL\UnitOfWork\" />
+    <Folder Include="Support\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\fonts\Assistant\Assistant-Bold.woff2" />
+    <None Include="wwwroot\assets\fonts\Assistant\Assistant-ExtraBold.woff2" />
+    <None Include="wwwroot\assets\fonts\Assistant\Assistant-ExtraLight.woff2" />
+    <None Include="wwwroot\assets\fonts\Assistant\Assistant-Light.woff2" />
+    <None Include="wwwroot\assets\fonts\Assistant\Assistant-Regular.woff2" />
+    <None Include="wwwroot\assets\fonts\Assistant\Assistant-SemiBold.woff2" />
+    <None Include="wwwroot\assets\images\logo-mini.svg" />
+    <None Include="wwwroot\assets\images\logo.svg" />
+    <None Include="wwwroot\assets\js\ace.js" />
+    <None Include="wwwroot\assets\js\alerts.js" />
+    <None Include="wwwroot\assets\js\avgrund.js" />
+    <None Include="wwwroot\assets\js\bootstrap-table.js" />
+    <None Include="wwwroot\assets\js\bt-maxLength.js" />
+    <None Include="wwwroot\assets\js\c3.js" />
+    <None Include="wwwroot\assets\js\calendar.js" />
+    <None Include="wwwroot\assets\js\chart.js" />
+    <None Include="wwwroot\assets\js\chartist.js" />
+    <None Include="wwwroot\assets\js\circle-progress.js" />
+    <None Include="wwwroot\assets\js\clipboard.js" />
+    <None Include="wwwroot\assets\js\codeEditor.js" />
+    <None Include="wwwroot\assets\js\codemirror.js" />
+    <None Include="wwwroot\assets\js\context-menu.js" />
+    <None Include="wwwroot\assets\js\cropper.js" />
+    <None Include="wwwroot\assets\js\dashboard.js" />
+    <None Include="wwwroot\assets\js\data-table.js" />
+    <None Include="wwwroot\assets\js\db.js" />
+    <None Include="wwwroot\assets\js\desktop-notification.js" />
+    <None Include="wwwroot\assets\js\dragula.js" />
+    <None Include="wwwroot\assets\js\dropify.js" />
+    <None Include="wwwroot\assets\js\dropzone.js" />
+    <None Include="wwwroot\assets\js\editorDemo.js" />
+    <None Include="wwwroot\assets\js\file-upload.js" />
+    <None Include="wwwroot\assets\js\flot-chart.js" />
+    <None Include="wwwroot\assets\js\form-addons.js" />
+    <None Include="wwwroot\assets\js\form-repeater.js" />
+    <None Include="wwwroot\assets\js\form-validation.js" />
+    <None Include="wwwroot\assets\js\formpickers.js" />
+    <None Include="wwwroot\assets\js\google-charts.js" />
+    <None Include="wwwroot\assets\js\google-maps.js" />
+    <None Include="wwwroot\assets\js\hoverable-collapse.js" />
+    <None Include="wwwroot\assets\js\iCheck.js" />
+    <None Include="wwwroot\assets\js\inputmask.js" />
+    <None Include="wwwroot\assets\js\ion-range-slider.js" />
+    <None Include="wwwroot\assets\js\jq.tablesort.js" />
+    <None Include="wwwroot\assets\js\jquery-file-upload.js" />
+    <None Include="wwwroot\assets\js\jquery.cookie.js" />
+    <None Include="wwwroot\assets\js\js-grid.js" />
+    <None Include="wwwroot\assets\js\just-gage.js" />
+    <None Include="wwwroot\assets\js\light-gallery.js" />
+    <None Include="wwwroot\assets\js\listify.js" />
+    <None Include="wwwroot\assets\js\mapael.js" />
+    <None Include="wwwroot\assets\js\mapael_example_1.js" />
+    <None Include="wwwroot\assets\js\mapael_example_2.js" />
+    <None Include="wwwroot\assets\js\maps.js" />
+    <None Include="wwwroot\assets\js\misc.js" />
+    <None Include="wwwroot\assets\js\modal-demo.js" />
+    <None Include="wwwroot\assets\js\morris.js" />
+    <None Include="wwwroot\assets\js\no-ui-slider.js" />
+    <None Include="wwwroot\assets\js\off-canvas.js" />
+    <None Include="wwwroot\assets\js\owl-carousel.js" />
+    <None Include="wwwroot\assets\js\paginate.js" />
+    <None Include="wwwroot\assets\js\popover.js" />
+    <None Include="wwwroot\assets\js\profile-demo.js" />
+    <None Include="wwwroot\assets\js\progress-bar.js" />
+    <None Include="wwwroot\assets\js\rickshaw.js" />
+    <None Include="wwwroot\assets\js\select2.js" />
+    <None Include="wwwroot\assets\js\settings.js" />
+    <None Include="wwwroot\assets\js\sparkline.js" />
+    <None Include="wwwroot\assets\js\tablesorter.js" />
+    <None Include="wwwroot\assets\js\tabs.js" />
+    <None Include="wwwroot\assets\js\tight-grid.js" />
+    <None Include="wwwroot\assets\js\toastDemo.js" />
+    <None Include="wwwroot\assets\js\todolist.js" />
+    <None Include="wwwroot\assets\js\tooltips.js" />
+    <None Include="wwwroot\assets\js\typeahead.js" />
+    <None Include="wwwroot\assets\js\widgets.js" />
+    <None Include="wwwroot\assets\js\wizard.js" />
+    <None Include="wwwroot\assets\js\x-editable.js" />
+    <None Include="wwwroot\assets\scss\components\landing-screens\_auth.scss" />
+    <None Include="wwwroot\assets\scss\components\loaders\_bar-loader.scss" />
+    <None Include="wwwroot\assets\scss\components\loaders\_circle-loader.scss" />
+    <None Include="wwwroot\assets\scss\components\loaders\_colored-balls.scss" />
+    <None Include="wwwroot\assets\scss\components\loaders\_dot-opacity-loader.scss" />
+    <None Include="wwwroot\assets\scss\components\loaders\_flip-square-loader.scss" />
+    <None Include="wwwroot\assets\scss\components\loaders\_glowing-ball.scss" />
+    <None Include="wwwroot\assets\scss\components\loaders\_jumping-dots-loader.scss" />
+    <None Include="wwwroot\assets\scss\components\loaders\_loaders.scss" />
+    <None Include="wwwroot\assets\scss\components\loaders\_moving-square-loader.scss" />
+    <None Include="wwwroot\assets\scss\components\loaders\_pixel-loader.scss" />
+    <None Include="wwwroot\assets\scss\components\loaders\_square-box.scss" />
+    <None Include="wwwroot\assets\scss\components\loaders\_square-path-loader.scss" />
+    <None Include="wwwroot\assets\scss\components\loaders\_variables.scss" />
+    <None Include="wwwroot\assets\scss\components\mixins\_animation.scss" />
+    <None Include="wwwroot\assets\scss\components\mixins\_background.scss" />
+    <None Include="wwwroot\assets\scss\components\mixins\_badges.scss" />
+    <None Include="wwwroot\assets\scss\components\mixins\_blockqoute.scss" />
+    <None Include="wwwroot\assets\scss\components\mixins\_breadcrumbs.scss" />
+    <None Include="wwwroot\assets\scss\components\mixins\_buttons.scss" />
+    <None Include="wwwroot\assets\scss\components\mixins\_cards.scss" />
+    <None Include="wwwroot\assets\scss\components\mixins\_misc.scss" />
+    <None Include="wwwroot\assets\scss\components\mixins\_no-ui-slider.scss" />
+    <None Include="wwwroot\assets\scss\components\mixins\_pagination.scss" />
+    <None Include="wwwroot\assets\scss\components\mixins\_popovers.scss" />
+    <None Include="wwwroot\assets\scss\components\mixins\_tooltips.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_ace.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_avgrund.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_c3.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_chartist.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_codemirror.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_colcade.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_colorpicker.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_context-menu.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_data-tables.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_datepicker.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_dropify.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_dropzone.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_flot-chart.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_full-calendar.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_google-charts.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_icheck.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_jquery-file-upload.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_js-grid.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_justguage.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_jvectormap.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_light-gallery.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_listify.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_morris.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_no-ui-slider.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_owl-carousel.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_progressbar-js.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_pws-tabs.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_quill.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_rating.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_select2.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_summernote.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_sweet-alert.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_switchery.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_tags.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_tinymce.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_toast.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_typeahead.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_wizard.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_wysieditor.scss" />
+    <None Include="wwwroot\assets\scss\components\plugin-overrides\_x-editable.scss" />
+    <None Include="wwwroot\assets\scss\components\_background.scss" />
+    <None Include="wwwroot\assets\scss\components\_badges.scss" />
+    <None Include="wwwroot\assets\scss\components\_buttons.scss" />
+    <None Include="wwwroot\assets\scss\components\_cards.scss" />
+    <None Include="wwwroot\assets\scss\components\_checkbox-radio.scss" />
+    <None Include="wwwroot\assets\scss\components\_demo.scss" />
+    <None Include="wwwroot\assets\scss\components\_dropdown.scss" />
+    <None Include="wwwroot\assets\scss\components\_fonts.scss" />
+    <None Include="wwwroot\assets\scss\components\_footer.scss" />
+    <None Include="wwwroot\assets\scss\components\_forms.scss" />
+    <None Include="wwwroot\assets\scss\components\_functions.scss" />
+    <None Include="wwwroot\assets\scss\components\_icons.scss" />
+    <None Include="wwwroot\assets\scss\components\_misc.scss" />
+    <None Include="wwwroot\assets\scss\components\_preview.scss" />
+    <None Include="wwwroot\assets\scss\components\_reset.scss" />
+    <None Include="wwwroot\assets\scss\components\_tables.scss" />
+    <None Include="wwwroot\assets\scss\components\_tabs.scss" />
+    <None Include="wwwroot\assets\scss\components\_todo-list.scss" />
+    <None Include="wwwroot\assets\scss\components\_typography.scss" />
+    <None Include="wwwroot\assets\scss\components\_utilities.scss" />
+    <None Include="wwwroot\assets\scss\components\_widget-grid.scss" />
+    <None Include="wwwroot\assets\scss\style.scss" />
+    <None Include="wwwroot\assets\scss\vertical\_vertical-wrapper.scss" />
+    <None Include="wwwroot\assets\scss\_layouts.scss" />
+    <None Include="wwwroot\assets\scss\_navbar.scss" />
+    <None Include="wwwroot\assets\scss\_sidebar.scss" />
+    <None Include="wwwroot\assets\scss\_variables.scss" />
+    <None Include="wwwroot\assets\vendors\chart.js\Chart.min.js" />
+    <None Include="wwwroot\assets\vendors\codemirror\codemirror.js" />
+    <None Include="wwwroot\assets\vendors\codemirror\javascript.js" />
+    <None Include="wwwroot\assets\vendors\codemirror\shell.js" />
+    <None Include="wwwroot\assets\vendors\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\assets\vendors\js\vendor.bundle.base.js" />
+    <None Include="wwwroot\assets\vendors\jvectormap\jquery-jvectormap-world-mill-en.js" />
+    <None Include="wwwroot\assets\vendors\jvectormap\jquery-jvectormap.min.js" />
+    <None Include="wwwroot\assets\vendors\mdi\css\materialdesignicons.min.css.map" />
+    <None Include="wwwroot\assets\vendors\mdi\fonts\materialdesignicons-webfont.woff2" />
+    <None Include="wwwroot\assets\vendors\owl-carousel-2\owl.carousel.min.js" />
+    <None Include="wwwroot\assets\vendors\progressbar.js\progressbar.min.js" />
+    <None Include="wwwroot\assets\vendors\pwstabs\jquery.pwstabs.min.js" />
+    <None Include="wwwroot\assets\vendors\select2\select2.min.js" />
+    <None Include="wwwroot\assets\vendors\typeahead.js\typeahead.bundle.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Auth0.AspNetCore.Authentication" Version="1.0.3" />
+    <PackageReference Include="bootstrap" Version="5.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Shared\_SidebarPartial.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Shared\_SidebarPartial.cshtml" />
+  </ItemGroup>
+
+</Project>
