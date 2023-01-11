@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./BugtrackerHF.Test
+        working-directory: '/home/runner/work/BugtrackerHF.Test'
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
