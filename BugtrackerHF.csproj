@@ -60,6 +60,7 @@
 
   <ItemGroup>
     <Folder Include="DAL\UnitOfWork\" />
+    <Folder Include="Models\DataTransferObjects\" />
     <Folder Include="Support\" />
   </ItemGroup>
 
