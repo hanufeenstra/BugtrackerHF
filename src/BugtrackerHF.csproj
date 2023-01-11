@@ -62,9 +62,11 @@
     <Folder Include="Controllers\API\v1\" />
     <Folder Include="DAL\Data\" />
     <Folder Include="DAL\GenericRepository\" />
+    <Folder Include="DAL\UnitOfWork\" />
     <Folder Include="DAL\Repositories\" />
     <Folder Include="DAL\UnitOfWork\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Models\DataTransferObjects\" />
     <Folder Include="Models\DataTransferObjects\" />
     <Folder Include="Models\ViewModels\" />
     <Folder Include="Services\" />
