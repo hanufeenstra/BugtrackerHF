@@ -2,7 +2,7 @@
 using BugtrackerHF.DAL.Repositories;
 using Microsoft.AspNetCore.Authentication;
 
-namespace BugtrackerHF.src.Services;
+namespace BugtrackerHF.Services;
 
 public class ClaimsTransformation : IClaimsTransformation
 {

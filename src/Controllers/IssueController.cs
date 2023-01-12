@@ -1,11 +1,11 @@
 ﻿using BugtrackerHF.Models;
-using BugtrackerHF.src.DAL.Repositories;
-using BugtrackerHF.src.Models;
-using BugtrackerHF.src.Models.ViewModels;
+using BugtrackerHF.DAL.Repositories;
+using BugtrackerHF.Models;
+using BugtrackerHF.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BugtrackerHF.src.Controllers
+namespace BugtrackerHF.Controllers
 {
     public class IssueController : Controller
     {

@@ -1,4 +1,4 @@
-﻿namespace BugtrackerHF.src.Support
+﻿namespace BugtrackerHF.Support
 {
     public static class SameSiteServiceCollectionExtensions
     {

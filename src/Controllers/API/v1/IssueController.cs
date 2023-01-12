@@ -1,9 +1,9 @@
 ﻿using BugtrackerHF.Models;
-using BugtrackerHF.src.DAL.Data;
+using BugtrackerHF.DAL.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace BugtrackerHF.src.Controllers.API.v1
+namespace BugtrackerHF.Controllers.API.v1
 {
     [Route("api/v1/[controller]")]
     [ApiController]

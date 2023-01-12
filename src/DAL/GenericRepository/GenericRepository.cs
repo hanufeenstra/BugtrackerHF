@@ -2,7 +2,7 @@
 using BugtrackerHF.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace BugtrackerHF.src.DAL.GenericRepository;
+namespace BugtrackerHF.DAL.GenericRepository;
 
 public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
 {

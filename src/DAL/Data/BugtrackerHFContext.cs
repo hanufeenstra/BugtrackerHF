@@ -1,8 +1,8 @@
 ﻿using BugtrackerHF.Models;
-using BugtrackerHF.src.Models;
+using BugtrackerHF.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BugtrackerHF.src.DAL.Data;
+namespace BugtrackerHF.DAL.Data;
 
 public class BugtrackerHFContext : DbContext
 {

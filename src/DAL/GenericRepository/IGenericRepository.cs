@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace BugtrackerHF.src.DAL.GenericRepository;
+namespace BugtrackerHF.DAL.GenericRepository;
 
 public interface IGenericRepository<T> where T : class
 {

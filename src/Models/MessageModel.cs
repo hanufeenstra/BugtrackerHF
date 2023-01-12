@@ -1,4 +1,4 @@
-﻿namespace BugtrackerHF.src.Models;
+﻿namespace BugtrackerHF.Models;
 
 public class MessageModel
 {

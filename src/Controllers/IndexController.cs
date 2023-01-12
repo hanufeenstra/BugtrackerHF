@@ -1,9 +1,9 @@
 ﻿using System.Security.Claims;
-using BugtrackerHF.src.DAL.Repositories;
+using BugtrackerHF.DAL.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BugtrackerHF.src.Controllers
+namespace BugtrackerHF.Controllers
 {
     public class IndexController : Controller
     {

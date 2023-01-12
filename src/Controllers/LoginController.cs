@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BugtrackerHF.src.Controllers
+namespace BugtrackerHF.Controllers
 {
     public class LoginController : Controller
     {

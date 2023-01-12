@@ -2,7 +2,7 @@
 using BugtrackerHF.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BugtrackerHF.src.DAL.Repositories;
+namespace BugtrackerHF.DAL.Repositories;
 
 public class UserRepository : IUserRepository
 {

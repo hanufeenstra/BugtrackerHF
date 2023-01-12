@@ -1,8 +1,8 @@
 ﻿using BugtrackerHF.DAL.Data;
-using BugtrackerHF.src.Models;
+using BugtrackerHF.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BugtrackerHF.src.DAL.Repositories;
+namespace BugtrackerHF.DAL.Repositories;
 
 public class IssueRepository : IIssueRepository
 {

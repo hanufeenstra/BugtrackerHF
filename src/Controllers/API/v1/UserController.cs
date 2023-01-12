@@ -1,8 +1,8 @@
 ﻿using BugtrackerHF.Models;
-using BugtrackerHF.src.DAL.Repositories;
+using BugtrackerHF.DAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BugtrackerHF.src.Controllers.API.v1
+namespace BugtrackerHF.Controllers.API.v1
 {
     [Route("api/v1/[controller]")]
     [ApiController]

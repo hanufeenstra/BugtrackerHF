@@ -1,7 +1,7 @@
 ﻿using BugtrackerHF.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace BugtrackerHF.src.Models;
+namespace BugtrackerHF.Models;
 
 public class IssueModel
 {

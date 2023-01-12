@@ -1,6 +1,6 @@
 ﻿using BugtrackerHF.Models;
 
-namespace BugtrackerHF.src.DAL.Repositories;
+namespace BugtrackerHF.DAL.Repositories;
 
 public interface IUserRepository
 {

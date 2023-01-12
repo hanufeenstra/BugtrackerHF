@@ -1,8 +1,12 @@
 ﻿using Auth0.AspNetCore.Authentication;
+using BugtrackerHF.DAL.Data;
+using BugtrackerHF.DAL.Repositories;
+using BugtrackerHF.Services;
+using BugtrackerHF.Support;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 
-namespace BugtrackerHF.src
+namespace BugtrackerHF
 {
     public class Startup
     {
@@ -56,6 +60,7 @@ namespace BugtrackerHF.src
 
             app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(routes =>
             {

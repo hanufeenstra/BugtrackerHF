@@ -1,6 +1,6 @@
 ﻿using BugtrackerHF.Models;
 
-namespace BugtrackerHF.src.Models;
+namespace BugtrackerHF.Models;
 
 public class ProjectModel
 {

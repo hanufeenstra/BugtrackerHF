@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BugtrackerHF.src.Controllers
+namespace BugtrackerHF.Controllers
 {
     public class LogoutController : Controller
     {

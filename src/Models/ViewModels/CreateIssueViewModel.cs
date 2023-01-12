@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using BugtrackerHF.Models;
 
-namespace BugtrackerHF.src.Models.ViewModels;
+
+namespace BugtrackerHF.Models.ViewModels;
 
 public class CreateIssueViewModel
 {

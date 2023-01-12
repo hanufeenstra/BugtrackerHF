@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BugtrackerHF", "src\BugtrackerHF.csproj", "{98FF1159-57C5-4FA4-8C3D-C8AF962BEA01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugtrackerHF.Test", "test\BugtrackerHF.Test\BugtrackerHF.Test.csproj", "{C6A1CFBF-AD75-4B42-9B4D-7D7315FC23D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugtrackerHF.Test", "test\BugtrackerHF.Test.csproj", "{C6A1CFBF-AD75-4B42-9B4D-7D7315FC23D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

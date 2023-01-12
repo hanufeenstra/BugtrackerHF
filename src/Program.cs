@@ -1,4 +1,4 @@
-namespace BugtrackerHF.src
+namespace BugtrackerHF
 {
     public class Program
     {
