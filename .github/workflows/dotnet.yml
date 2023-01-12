@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: /test/BugtrackerHF.Test.csproj'
+        working-directory: /test/BugtrackerHF.Test.csproj
         
     steps:
     - uses: actions/checkout@v3
