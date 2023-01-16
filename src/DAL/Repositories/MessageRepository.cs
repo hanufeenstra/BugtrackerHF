@@ -26,7 +26,7 @@ public class MessageRepository : IMessageRepository
         return message;
     }
 
-    public void Update(MessageModel messageModel)
+    public void Update(MessageModel message)
     {
     }
 

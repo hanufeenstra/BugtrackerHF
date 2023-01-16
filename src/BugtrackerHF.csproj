@@ -66,11 +66,9 @@
     <Folder Include="Migrations\" />
     <Folder Include="Models\DataTransferObjects\" />
     <Folder Include="Models\DataTransferObjects\" />
-    <Folder Include="Models\ViewModels\" />
     <Folder Include="Services\" />
     <Folder Include="wwwroot\assets\vendors\css\" />
     <Folder Include="Support\" />
-    <Folder Include="Views\Profile\" />
     <Folder Include="wwwroot\assets\css\" />
     <Folder Include="wwwroot\assets\fonts\Assistant\" />
     <Folder Include="wwwroot\assets\fonts\Rubik\" />

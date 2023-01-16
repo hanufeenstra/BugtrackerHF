@@ -6,6 +6,6 @@ public interface IMessageRepository
 {
     void Create(MessageModel message);
     Task<MessageModel> ReadSingleByIdAsync(int messageId);
-    void Update(MessageModel messageModel);
+    void Update(MessageModel message);
     void Delete(int messageId);
 }

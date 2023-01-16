@@ -9,7 +9,7 @@ public interface IUserRepository
     Task<UserModel> LoadIssuesAsync(UserModel user);
     Task<UserModel> LoadIssuesByAuthZeroIdAsync(string authZeroId);
     void Update(int id, string email, string nickname);
-    void Update(UserModel user);
+    Task Update(UserModel user);
     void Delete(int id);
 
 }

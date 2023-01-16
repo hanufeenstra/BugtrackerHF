@@ -42,4 +42,10 @@ public class IssueRepository : IIssueRepository
 
         return issue;
     }
+
+    public async Task UpdateAsync(IssueModel model)
+    {
+        _context.IssueModel.Update(model);
+        await _context.SaveChangesAsync();
+    }
 }

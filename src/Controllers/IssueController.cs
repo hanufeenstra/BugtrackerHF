@@ -71,7 +71,7 @@ namespace BugtrackerHF.Controllers
             var issue = await _issueRepository.GetByIdAsync(id);
 
             if (issue == null)
-                RedirectToAction("", "");
+                RedirectToAction("MyIssues", "Index");
 
             return View(issue);
         }

@@ -34,15 +34,13 @@ namespace BugtrackerHF
             services.AddMvcCore();
             services.AddRazorPages();
 
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IIssueRepository, IssueRepository>();
-            services.AddTransient<IMessageRepository, MessageRepository>();
-
             services.AddScoped<IClaimsTransformation, ClaimsTransformation>();
-
-            services.AddSingleton<IIssueService, IssueService>();
-            services.AddSingleton<IUserService, UserService>();
-            services.AddSingleton<IDashboardService, DashboardService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IIssueRepository, IssueRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
+            services.AddScoped<IIssueService, IssueService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IDashboardService, DashboardService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

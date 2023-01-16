@@ -26,7 +26,7 @@ namespace BugtrackerHF.Controllers
         [Authorize]
         public async Task<IActionResult> MyIssues()
         {
-            return View(await _issueService.GetViewIssueViewModel(GetUserAuthZeroId()));
+            return View(await _issueService.GetMyIssuesViewModel(GetUserAuthZeroId()));
         }
 
         [Authorize]

@@ -67,7 +67,8 @@ public class UserRepository : IUserRepository
     /// <param name="nickname"></param>
     public void Update(int id, string email, string nickname)
     {
-        var updatedUser = _context.UserModel.Find(id);
+
+        _context.UserModel.Attach(u => u.)
 
         updatedUser.UserEmail = email;
         updatedUser.UserNickname = nickname;
@@ -78,11 +79,11 @@ public class UserRepository : IUserRepository
     /// Update UserModel
     /// </summary>
     /// <param name="user"></param>
-    public void Update(UserModel user)
+    public async Task UpdateAsync(UserModel user)
     {
-        var updatedUser = _context.UserModel.Find(user.Id);
-        updatedUser = user;
-        _context.SaveChanges();
+        var oldUser = await _context.UserModel.FirstOrDefaultAsync(u => u.Id == user.Id);
+        oldUser = user;
+        await _context.SaveChangesAsync();
     }
 
     public void Delete(int id)
