@@ -6,12 +6,12 @@ namespace BugtrackerHF.Models.ViewModels;
 
 public class CreateIssueViewModel
 {
-    public IList<ProjectModel> ProjectList { get; set; }
+    public IList<ProjectModel>? ProjectList { get; set; }
     [Required]
-    public ProjectModel SelectedProject { get; set; }
+    public ProjectModel? SelectedProject { get; set; }
     [Required]
-    public string Title { get; set; }
+    public string? Title { get; set; }
     [Required]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
 }

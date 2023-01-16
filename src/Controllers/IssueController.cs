@@ -1,6 +1,5 @@
 ﻿using BugtrackerHF.Models;
 using BugtrackerHF.DAL.Repositories;
-using BugtrackerHF.Models;
 using BugtrackerHF.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

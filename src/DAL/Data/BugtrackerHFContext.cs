@@ -1,5 +1,4 @@
 ﻿using BugtrackerHF.Models;
-using BugtrackerHF.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BugtrackerHF.DAL.Data;

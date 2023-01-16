@@ -6,8 +6,8 @@ namespace BugtrackerHF.DAL.GenericRepository;
 
 public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
 {
-    public BugtrackerHFContext _context;
-    public DbSet<TEntity> _dbSet;
+    private readonly BugtrackerHFContext _context;
+    private readonly DbSet<TEntity> _dbSet;
 
     public GenericRepository(BugtrackerHFContext context)
     {

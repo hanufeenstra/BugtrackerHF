@@ -2,5 +2,5 @@
 
 public class ViewIssueViewModel
 {
-
+    public IList<IssueModel>? Issues { get; set; }
 }
