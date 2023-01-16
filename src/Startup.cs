@@ -39,8 +39,10 @@ namespace BugtrackerHF
             services.AddTransient<IMessageRepository, MessageRepository>();
 
             services.AddScoped<IClaimsTransformation, ClaimsTransformation>();
-            services.AddScoped<IIssueService, IssueService>();
-            services.AddScoped<IUserService, UserService>();
+
+            services.AddSingleton<IIssueService, IssueService>();
+            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IDashboardService, DashboardService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

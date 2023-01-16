@@ -1,8 +1,9 @@
 ﻿using BugtrackerHF.DAL.Repositories;
+using BugtrackerHF.Models.ViewModels;
 
 namespace BugtrackerHF.Services;
 
-public class DashboardService
+public class DashboardService : IDashboardService
 {
     private readonly IUserRepository _userRepository;
 
@@ -11,5 +12,10 @@ public class DashboardService
         _userRepository = userRepository;
     }
 
+    public async Task<DashboardViewModel> GetDashboardViewModel(string authZeroId)
+    {
+        var user = await _userRepository.GetByAuthZeroIdAsync(authZeroId);
 
+        return new DashboardViewModel();
+    }
 }

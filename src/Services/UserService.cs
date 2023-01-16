@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using BugtrackerHF.DAL.Repositories;
 using BugtrackerHF.Models;
+using BugtrackerHF.Models.ViewModels;
 
 namespace BugtrackerHF.Services;
 
@@ -14,9 +15,10 @@ public class UserService : IUserService
         _userRepository = userRepository;
     }
 
-    public async Task<UserModel> PopulateIssueList(string authZeroId)
+    public async Task<ProfileViewModel> GetProfileViewModel(string authZeroId)
     {
-        var user = await _userRepository.LoadIssuesByAuthZeroIdAsync(authZeroId);
-        return user;
+        await _userRepository.GetByAuthZeroIdAsync(authZeroId);
+
+        return new ProfileViewModel();
     }
 }

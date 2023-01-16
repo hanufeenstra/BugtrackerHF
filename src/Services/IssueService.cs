@@ -16,6 +16,11 @@ public class IssueService : IIssueService
         _issueRepository = issueRepository;
     }
 
+    /// <summary>
+    /// Takes authZeroId as parameter, populates the ViewModel with a list of Issues related to the User. 
+    /// </summary>
+    /// <param name="authZeroId"></param>
+    /// <returns>ViewIssueViewModel</returns>
     public async Task<ViewIssueViewModel> GetViewIssueViewModel(string authZeroId)
     {
         var user = await _userRepository.LoadIssuesByAuthZeroIdAsync(authZeroId);

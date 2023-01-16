@@ -7,10 +7,12 @@ namespace BugtrackerHF.Services;
 public class ClaimsTransformation : IClaimsTransformation
 {
     private readonly IUserRepository _userRepository;
+    private readonly ILogger<ClaimsTransformation> _logger;
 
-    public ClaimsTransformation(IUserRepository userRepository)
+    public ClaimsTransformation(IUserRepository userRepository, ILogger<ClaimsTransformation> logger)
     {
         _userRepository = userRepository;
+        _logger = logger;
     }
 
     public async Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)
@@ -34,8 +36,19 @@ public class ClaimsTransformation : IClaimsTransformation
         }
 
         // Add userId claim to cloned identity
-        var claim = new Claim("UserViewModelId", user.Id.ToString());
-        newIdentity.AddClaim(claim);
+        var userId = new Claim("UserModelId", user.Id.ToString());
+
+        // Add userPicture to cloned identity 
+        var userPicture = new Claim("UserPicture", user.UserPicture!);
+
+        // Add userNickname to cloned identity
+        var userNickname = new Claim("UserNickname", user.UserNickname!);
+
+        newIdentity.AddClaim(userId);
+        newIdentity.AddClaim(userPicture);
+        newIdentity.AddClaim(userNickname);
+
+        _logger.LogInformation("Transformed claim. Added userId: {0}, userPicture: {1}, userNickname: {2}", userId, userPicture, userNickname);
 
         return clone;
     }

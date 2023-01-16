@@ -29,6 +29,11 @@ public class UserRepository : IUserRepository
         return user;
     }
 
+    /// <summary>
+    /// Loads the UserModel.IssueList explicitly for the user related to authZeroId
+    /// </summary>
+    /// <param name="authZeroId"></param>
+    /// <returns>UserModel object</returns>
     public async Task<UserModel> LoadIssuesByAuthZeroIdAsync(string authZeroId)
     {
         var user = await _context.UserModel
@@ -42,7 +47,7 @@ public class UserRepository : IUserRepository
     /// Loads the UserModel.IssueList explicitly for the given user 
     /// </summary>
     /// <param name="user"></param>
-    /// <returns></returns>
+    /// <returns>UserModel object</returns>
     public async Task<UserModel> LoadIssuesAsync(UserModel user)
     {
         await _context.Entry(user)
