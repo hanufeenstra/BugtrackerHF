@@ -10,18 +10,15 @@ namespace BugtrackerHF.Controllers
     public class IndexController : Controller
     {
         private readonly ILogger<IndexController> _logger;
-        private readonly IUserRepository _userRepository;
         private readonly IIssueService _issueService;
         private readonly IDashboardService _dashboardService;
 
         public IndexController(
             ILogger<IndexController> logger,
-            IUserRepository userRepository,
             IIssueService issueService,
             IDashboardService dashboardService)
         {
             _logger = logger;
-            _userRepository = userRepository;
             _issueService = issueService;
             _dashboardService = dashboardService;
         }
@@ -29,16 +26,13 @@ namespace BugtrackerHF.Controllers
         [Authorize]
         public async Task<IActionResult> MyIssues()
         {
-            var viewModel = await _issueService.GetViewIssueViewModel(GetUserAuthZeroId());
-
-            return View(viewModel);
+            return View(await _issueService.GetViewIssueViewModel(GetUserAuthZeroId()));
         }
 
         [Authorize]
         public async Task<IActionResult> Dashboard()
         {
-            var viewModel = new DashboardViewModel();
-            return View(viewModel);
+            return View(await _dashboardService.GetDashboardViewModel(GetUserAuthZeroId()));
         }
 
         /// <summary>
@@ -47,10 +41,8 @@ namespace BugtrackerHF.Controllers
         /// <returns>nullable string: ClaimTypes.NameIdentifier</returns>
         private string GetUserAuthZeroId()
         {
-            var authZeroId = User.Claims.FirstOrDefault(
-                c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-
-            return authZeroId;
+            return User.Claims.FirstOrDefault(
+                c => c.Type == ClaimTypes.NameIdentifier)?.Value!;
         }
 
 
