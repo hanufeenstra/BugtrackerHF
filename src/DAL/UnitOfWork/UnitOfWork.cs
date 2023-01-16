@@ -10,6 +10,9 @@ public class UnitOfWork : IUnitOfWork, IDisposable
 {
     private readonly BugtrackerHFContext _context;
     private bool _disposed;
+    private readonly IUserRepository _userRepository;
+    private readonly IMessageRepository _messageRepository;
+    private readonly IIssueRepository _issueRepository;
     private IDbContextTransaction _transaction;
 
     public UnitOfWork(
@@ -19,16 +22,25 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         IIssueRepository issueRepository)
     {
         _context = context;
-        MessageRepository = messageRepository;
-        UserRepository = userRepository;
-        IssueRepository = issueRepository;
+        _messageRepository = messageRepository;
+        _userRepository = userRepository;
+        _issueRepository = issueRepository;
     }
 
-    public IMessageRepository MessageRepository { get; }
+    public IMessageRepository MessageRepository()
+    {
+        return _messageRepository;
+    }
 
-    public IUserRepository UserRepository { get; }
+    public IUserRepository UserRepository()
+    {
+        return _userRepository;
+    }
 
-    public IIssueRepository IssueRepository { get; }
+    public IIssueRepository IssueRepository()
+    {
+        return _issueRepository;
+    }
 
     public void CreateTransaction()
     {
