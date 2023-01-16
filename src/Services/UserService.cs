@@ -17,8 +17,15 @@ public class UserService : IUserService
 
     public async Task<ProfileViewModel> GetProfileViewModel(string authZeroId)
     {
-        await _userRepository.GetByAuthZeroIdAsync(authZeroId);
+        var user = await _userRepository.GetByAuthZeroIdAsync(authZeroId);
 
-        return new ProfileViewModel();
+        var viewModel = new ProfileViewModel
+        {
+            UserNickname = user.UserNickname,
+            UserEmail = user.UserEmail,
+            UserPicture = user.UserPicture
+        };
+
+        return viewModel;
     }
 }
