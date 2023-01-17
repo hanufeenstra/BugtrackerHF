@@ -1,6 +1,8 @@
 ﻿using BugtrackerHF.Models;
 using BugtrackerHF.DAL.Repositories;
+using BugtrackerHF.DAL.UnitOfWork;
 using BugtrackerHF.Models.ViewModels;
+using BugtrackerHF.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,15 +10,18 @@ namespace BugtrackerHF.Controllers
 {
     public class IssueController : Controller
     {
-        private readonly IIssueRepository _issueRepository;
-        private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IIssueService _issueService;
         private readonly ILogger<IssueModel> _logger;
 
-        public IssueController(ILogger<IssueModel> logger, IIssueRepository issueRepository, IUserRepository userRepository)
+        public IssueController(
+            ILogger<IssueModel> logger, 
+            IUnitOfWork unitOfWork,
+            IIssueService issueService)
         {
             _logger = logger;
-            _issueRepository = issueRepository;
-            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
+            _issueService = issueService;
         }
 
         [Authorize]
@@ -36,7 +41,7 @@ namespace BugtrackerHF.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateIssue([FromForm] CreateIssueViewModel model)
+        public async Task<IActionResult> CreateIssue([FromForm] int selectedProjectId, CreateIssueViewModel model)
         {
             Console.WriteLine(model.SelectedProject.ProjectName);
             var userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserViewModelId").Value);
@@ -59,21 +64,19 @@ namespace BugtrackerHF.Controllers
                 LastUpdateDate = DateTime.Now
             };
 
-            var newIssue = await _issueRepository.AddAsync(issue);
+            await _unitOfWork.IssueRepository().InsertAsync(issue);
+            _unitOfWork.Save();
+
+            var newIssue = _unitOfWork.IssueRepository().GetAsync(issue);
 
 
-            return RedirectToAction("View", "Issue", newIssue.Id);
+            return RedirectToAction("DisplayIssue", "Issue", newIssue.Id);
         }
 
         [Authorize]
-        public async Task<IActionResult> View(int id)
+        public async Task<IActionResult> DisplayIssue(int id)
         {
-            var issue = await _issueRepository.GetByIdAsync(id);
-
-            if (issue == null)
-                RedirectToAction("MyIssues", "Index");
-
-            return View(issue);
+            return View(await _issueService.GetDisplayIssueViewModel(id));
         }
     }
 }

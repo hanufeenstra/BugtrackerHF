@@ -1,17 +1,18 @@
 ﻿using System.Security.Claims;
-using BugtrackerHF.DAL.Repositories;
+using BugtrackerHF.DAL.UnitOfWork;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BugtrackerHF.Services;
 
 public class ClaimsTransformation : IClaimsTransformation
 {
-    private readonly IUserRepository _userRepository;
+    private readonly IUnitOfWork _unitOfWork;
     private readonly ILogger<ClaimsTransformation> _logger;
 
-    public ClaimsTransformation(IUserRepository userRepository, ILogger<ClaimsTransformation> logger)
+    public ClaimsTransformation(IUnitOfWork unitOfWork, ILogger<ClaimsTransformation> logger)
     {
-        _userRepository = userRepository;
+        _unitOfWork = unitOfWork;
         _logger = logger;
     }
 
@@ -23,16 +24,27 @@ public class ClaimsTransformation : IClaimsTransformation
 
         // Support AD and local accounts
         var authZeroId = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+        
         if (authZeroId == null)
         {
-            return principal;
+            newIdentity.AddClaim(new Claim("UserModelId", ""));
+            newIdentity.AddClaim(new Claim("UserPicture", ""));
+            newIdentity.AddClaim(new Claim("UserNickname", ""));
+
+            _logger.LogError("Auth0 Id not found, empty claim returned");
+            return clone;
         }
 
         // Get user from database
-        var user = await _userRepository.GetByAuthZeroIdAsync(authZeroId);
+        var user = await _unitOfWork.UserRepository().GetByAuthZeroIdAsync(authZeroId);
+
         if (user == null)
         {
-            return principal;
+            newIdentity.AddClaim(new Claim("UserModelId", ""));
+            newIdentity.AddClaim(new Claim("UserPicture", ""));
+            newIdentity.AddClaim(new Claim("UserNickname", ""));
+            _logger.LogError("User linked to Auth0 Id not found, empty claim returned");
+            return clone;
         }
 
         // Add userId claim to cloned identity

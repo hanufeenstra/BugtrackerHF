@@ -16,15 +16,12 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IDbContextTransaction _transaction;
 
     public UnitOfWork(
-        BugtrackerHFContext context, 
-        IMessageRepository messageRepository,
-        IUserRepository userRepository,
-        IIssueRepository issueRepository)
+        BugtrackerHFContext context)
     {
         _context = context;
-        _messageRepository = messageRepository;
-        _userRepository = userRepository;
-        _issueRepository = issueRepository;
+        _messageRepository = new MessageRepository(_context);
+        _userRepository = new UserRepository(_context);
+        _issueRepository = new IssueRepository(_context);
     }
 
     public IMessageRepository MessageRepository()

@@ -1,24 +1,15 @@
 ﻿using BugtrackerHF.DAL.Data;
 using BugtrackerHF.Models;
-using Microsoft.EntityFrameworkCore;
+using BugtrackerHF.DAL.GenericRepository;
 
 namespace BugtrackerHF.DAL.Repositories;
 
-public class IssueRepository : IIssueRepository
+public class IssueRepository : GenericRepository<IssueModel>, IIssueRepository
 {
-    private readonly BugtrackerHFContext _context;
-
+    
     public IssueRepository(BugtrackerHFContext context)
+        :base(context)
     {
-        _context = context;
-    }
-
-    public async Task<IssueModel> AddAsync(IssueModel issue)
-    {
-        _context.IssueModel.Add(issue);
-        await _context.SaveChangesAsync();
-
-        return issue;
     }
 
     /// <summary>
@@ -33,19 +24,5 @@ public class IssueRepository : IIssueRepository
             .LoadAsync();
 
         return issue;
-    }
-
-    public async Task<IssueModel> GetByIdAsync(int id)
-    {
-        var issue = await _context.IssueModel
-            .SingleOrDefaultAsync(i => i.Id == id);
-
-        return issue;
-    }
-
-    public async Task UpdateAsync(IssueModel model)
-    {
-        _context.IssueModel.Update(model);
-        await _context.SaveChangesAsync();
     }
 }

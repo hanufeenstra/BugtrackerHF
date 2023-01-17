@@ -1,11 +1,9 @@
 ﻿using BugtrackerHF.Models;
+using BugtrackerHF.DAL.GenericRepository;
 
 namespace BugtrackerHF.DAL.Repositories;
 
-public interface IIssueRepository
+public interface IIssueRepository : IGenericRepository<IssueModel>
 {
-    Task<IssueModel> AddAsync(IssueModel issue);
     Task<IssueModel> LoadMessagesAsync(IssueModel issue);
-    Task<IssueModel> GetByIdAsync(int id);
-    Task UpdateAsync(IssueModel model);
 }

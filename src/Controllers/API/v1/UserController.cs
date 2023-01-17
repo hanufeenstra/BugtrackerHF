@@ -1,5 +1,6 @@
 ﻿using BugtrackerHF.Models;
 using BugtrackerHF.DAL.Repositories;
+using BugtrackerHF.DAL.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BugtrackerHF.Controllers.API.v1
@@ -8,12 +9,14 @@ namespace BugtrackerHF.Controllers.API.v1
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<UserController> _logger;
 
-        public UserController(ILogger<UserController> logger, IUserRepository userRepository)
+        public UserController(
+            ILogger<UserController> logger, 
+            IUnitOfWork unitOfWork)
         {
-            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
             _logger = logger;
         }
 
@@ -26,7 +29,7 @@ namespace BugtrackerHF.Controllers.API.v1
         {
             _logger.LogInformation("API Received: {0}", authZeroId);
 
-            var model = await _userRepository.GetByAuthZeroIdAsync(authZeroId);
+            var model = await _unitOfWork.UserRepository().GetByAuthZeroIdAsync(authZeroId);
 
             if (model != null)
             {
@@ -42,7 +45,7 @@ namespace BugtrackerHF.Controllers.API.v1
                 UserPicture = userPicture
             };
 
-            await _userRepository.AddUserAsync(userViewModel);
+            await _unitOfWork.UserRepository().InsertAsync(userViewModel);
 
             _logger.LogInformation("New user: {0}, added to database", userViewModel.AuthZeroId);
 

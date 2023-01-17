@@ -32,13 +32,13 @@
                 <form asp-controller="Issue" asp-action="CreateIssue" method="post" class="forms-sample">
                     <div class="form-group">
                         <label>Project</label>
-                        <select asp-for="SelectedProject" class="form-control form-control-sm text-white" id="exampleFormControlSelect3">
+                        <select class="form-control form-control-sm text-white" id="exampleFormControlSelect3">
                             @{
                                 if (Model.ProjectList.Any())
                                 {
                                     foreach (var project in Model.ProjectList)
                                     {
-                                        <option>@project.ProjectName</option>
+                                        <option asp-for="@Model.SelectedProject">@project.ProjectName</option>
                                     }
                                 }
                             }

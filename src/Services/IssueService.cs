@@ -1,4 +1,4 @@
-﻿using BugtrackerHF.DAL.Repositories;
+﻿using BugtrackerHF.DAL.UnitOfWork;
 using BugtrackerHF.Models;
 using BugtrackerHF.Models.ViewModels;
 
@@ -6,15 +6,11 @@ namespace BugtrackerHF.Services;
 
 public class IssueService : IIssueService
 {
-    private readonly IUserRepository _userRepository;
-    private readonly IIssueRepository _issueRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public IssueService(
-        IUserRepository userRepository, 
-        IIssueRepository issueRepository)
+    public IssueService(IUnitOfWork unitOfWork)
     {
-        _userRepository = userRepository;
-        _issueRepository = issueRepository;
+        _unitOfWork = unitOfWork;
     }
 
     /// <summary>
@@ -24,7 +20,7 @@ public class IssueService : IIssueService
     /// <returns>MyIssuesViewModel</returns>
     public async Task<MyIssuesViewModel> GetMyIssuesViewModel(string authZeroId)
     {
-        var user = await _userRepository.LoadIssuesByAuthZeroIdAsync(authZeroId);
+        var user = await _unitOfWork.UserRepository().LoadIssuesByAuthZeroIdAsync(authZeroId);
 
         var viewModel = new MyIssuesViewModel
         {
@@ -34,33 +30,63 @@ public class IssueService : IIssueService
         return viewModel;
     }
 
-    public void IncreaseIssueSeverity(int issueId)
+    public async Task<DisplayIssueViewModel> GetDisplayIssueViewModel(int id)
     {
-        // Severity.Critical is largest enum value
-        if (CurrentSeverity < Severity.Critical)
+        var issue = await _unitOfWork.IssueRepository().GetByIdAsync(id);
+
+        var viewModel = new DisplayIssueViewModel()
         {
-            CurrentSeverity += 1;
-            LastUpdateDate = DateTime.Now;
+           Id = issue.Id,
+           LastUpdateDate = issue.LastUpdateDate,
+           CreatedDate = issue.CreatedDate,
+           CurrentSeverity = issue.CurrentSeverity,
+           CurrentStatus = issue.CurrentStatus,
+           IssueName = issue.IssueName,
+           ReportedByUserId = issue.ReportedByUserId
+        };
+
+        return viewModel;
+    }
+    public async Task IncreaseIssueSeverity(int issueId)
+    {
+        var model = await _unitOfWork.IssueRepository().GetByIdAsync(issueId);
+
+        // Severity.Critical is largest enum value
+        if (model.CurrentSeverity < Severity.Critical)
+        {
+            model.CurrentSeverity += 1;
+            model.LastUpdateDate = DateTime.Now;
         }
+        _unitOfWork.IssueRepository().Update(model);
+        _unitOfWork.Save();
     }
 
     public async Task DecreaseIssueSeverity(int issueId)
     {
-        var model = await _issueRepository.GetByIdAsync(issueId);
+        var issue = await _unitOfWork.IssueRepository().GetByIdAsync(issueId);
 
         // Severity.Cosmetic is smallest enum value
-        if (model.CurrentSeverity > Severity.Cosmetic)
+        if (issue.CurrentSeverity > Severity.Cosmetic)
         {
-            model.CurrentSeverity -= 1;
-            model.LastUpdateDate = DateTime.Now;
+            issue.CurrentSeverity -= 1;
+            issue.LastUpdateDate = DateTime.Now;
         }
 
-        await _issueRepository.UpdateAsync(model);
+        _unitOfWork.IssueRepository().Update(issue);
+        _unitOfWork.Save();
     }
 
-    public void AssignIssueToUser(int userId)
+
+    public async Task AssignIssueToUser(int userId, IssueModel issue)
     {
-        //AssignedToUserId = userId;
-        LastUpdateDate = DateTime.Now;
+        // Incomplete, need to implement removal from current user logic
+
+        var user = await _unitOfWork.UserRepository().GetByIdAsync(userId);
+        
+        issue.LastUpdateDate = DateTime.Now;
+        await _unitOfWork.UserRepository().LoadIssuesAsync(user);
+
+        user.IssueList.Add(issue);
+
     }
 }

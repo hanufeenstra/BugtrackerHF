@@ -1,7 +1,6 @@
 ﻿using BugtrackerHF.Models;
-using BugtrackerHF.DAL.Data;
+using BugtrackerHF.DAL.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace BugtrackerHF.Controllers.API.v1
 {
@@ -9,47 +8,47 @@ namespace BugtrackerHF.Controllers.API.v1
     [ApiController]
     public class IssueController : ControllerBase
     {
-        private readonly BugtrackerHFContext _context;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<IssueController> _logger;
 
-        public IssueController(ILogger<IssueController> logger, BugtrackerHFContext context)
+        public IssueController(
+            ILogger<IssueController> logger, 
+            IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
             _logger = logger;
         }
 
         // GET: /api/issue
-        [HttpGet]
-        public async Task<ActionResult> GetIssue()
-        {
-            var model = await _context.IssueModel.ToListAsync();
+        //[HttpGet]
+        //public async Task<ActionResult> GetIssue()
+        //{
+        //    var model = await _unitOfWork.IssueRepository().
 
-            return Ok(model);
-        }
+        //    return Ok(model);
+        //}
 
         //GET: /api/issue/5
         [HttpGet("{Id}")]
         public async Task<ActionResult> GetIssue(int id)
         {
-            var model = await _context.IssueModel.FirstOrDefaultAsync(m => m.Id == id);
+            var issue = await _unitOfWork.IssueRepository().GetByIdAsync(id);
 
-
-
-            if (model == null)
+            if (issue == null)
                 return NotFound();
 
-            return Ok(model);
+            return Ok(issue);
         }
 
         // POST: /api/issue?issueName&comment&creatorId&assignedToId
         [HttpPost]
-        public async Task<ActionResult> CreateIssue(string issueName, string comment, int creatorId)
+        public async Task<ActionResult> Create(string issueName, string comment, int creatorId)
         {
-            var issue = new IssueModel(
-                issueName,
-                creatorId,
-                new MessageModel(creatorId, "Issue: " + comment + ", opened by: " + creatorId.ToString())
-            );
+            var issue = new IssueModel();
+            //    issueName,
+            //    creatorId,
+            //    new MessageModel(creatorId, "Issue: " + comment + ", opened by: " + creatorId.ToString())
+            //);
 
 
             if (!ModelState.IsValid)
@@ -57,8 +56,9 @@ namespace BugtrackerHF.Controllers.API.v1
                 return BadRequest(ModelState);
             }
 
-            _context.IssueModel.Add(issue);
-            await _context.SaveChangesAsync();
+            await _unitOfWork.IssueRepository().InsertAsync(issue);
+            _unitOfWork.Save();
+
             return CreatedAtAction("CreateIssue", issue);
 
         }
