@@ -14,7 +14,7 @@ public class IssueService : IIssueService
     }
 
     /// <summary>
-    /// Takes authZeroId as parameter, populates the ViewModel with a list of Issues related to the User. 
+    /// Takes authZeroId as parameter, populates the view specific model with a list of Issues related to the User. 
     /// </summary>
     /// <param name="authZeroId"></param>
     /// <returns>MyIssuesViewModel</returns>
@@ -29,10 +29,14 @@ public class IssueService : IIssueService
 
         return viewModel;
     }
-
-    public async Task<DisplayIssueViewModel> GetDisplayIssueViewModel(int id)
+    /// <summary>
+    /// Takes the issue id as parameter, returns a view specific model for the issue related to the issue id.
+    /// </summary>
+    /// <param name="issueId"></param>
+    /// <returns>DisplayIssueViewModel</returns>
+    public async Task<DisplayIssueViewModel> GetDisplayIssueViewModel(int issueId)
     {
-        var issue = await _unitOfWork.IssueRepository().GetByIdAsync(id);
+        var issue = await _unitOfWork.IssueRepository().GetByIdAsync(issueId);
 
         var viewModel = new DisplayIssueViewModel()
         {
@@ -90,7 +94,13 @@ public class IssueService : IIssueService
 
     }
 
-    public async Task CreateNewIssue(CreateIssueViewModel issue)
+    /// <summary>
+    /// Takes a populated view specific model as parameter, creates an IssueModel and saves
+    /// it to the database, returns the issueId
+    /// </summary>
+    /// <param name="issue"></param>
+    /// <returns>issueId</returns>
+    public async Task<int> CreateNewIssue(CreateIssueViewModel issue)
     {
         var issueToSave = new IssueModel
         {
@@ -99,11 +109,22 @@ public class IssueService : IIssueService
             CurrentSeverity = Severity.Cosmetic,
             CurrentStatus = Status.Unopened,
             LastUpdateDate = DateTime.Now,
-            MessageList = new List<MessageModel>(
-                new MessageModel{ 
+            ReportedByUserId = issue.CreatedByUserId,
+            MessageList = new List<MessageModel>
+            {
+                new MessageModel
+                {
                     CreatedTime = DateTime.Now,
-                    CreatedByUserId = issue.Description})
-        }
-        _unitOfWork
+                    CreatedByUserId = issue.CreatedByUserId,
+                    Message = issue.Description
+                }
+                
+            }
+        };
+        await _unitOfWork.IssueRepository().InsertAsync(issueToSave);
+        _unitOfWork.Save();
+
+        Console.WriteLine(issueToSave.Id);
+        return issueToSave.Id;
     }
 }

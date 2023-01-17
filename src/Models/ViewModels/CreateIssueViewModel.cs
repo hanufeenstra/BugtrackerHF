@@ -9,7 +9,8 @@ public class CreateIssueViewModel
     public IList<ProjectModel>? ProjectList { get; set; }
     [Required]
     public int SelectedProjectId { get; set; }
-    [Required]
+    
+    public int CreatedByUserId { get; set; }
     public string? Title { get; set; }
     [Required]
     public string? Description { get; set; }

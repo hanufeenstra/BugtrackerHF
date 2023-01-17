@@ -40,11 +40,13 @@ namespace BugtrackerHF.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("IssueName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LastUpdateDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("ReportedByUserId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("UserModelId")
                         .HasColumnType("int");
@@ -53,7 +55,7 @@ namespace BugtrackerHF.Migrations
 
                     b.HasIndex("UserModelId");
 
-                    b.ToTable("IssueModel", (string)null);
+                    b.ToTable("IssueModel");
                 });
 
             modelBuilder.Entity("BugtrackerHF.Models.MessageModel", b =>
@@ -80,7 +82,7 @@ namespace BugtrackerHF.Migrations
 
                     b.HasIndex("IssueModelId");
 
-                    b.ToTable("MessageModel", (string)null);
+                    b.ToTable("MessageModel");
                 });
 
             modelBuilder.Entity("BugtrackerHF.Models.ProjectModel", b =>
@@ -101,7 +103,7 @@ namespace BugtrackerHF.Migrations
 
                     b.HasIndex("ProjectManagerId");
 
-                    b.ToTable("ProjectModel", (string)null);
+                    b.ToTable("ProjectModel");
                 });
 
             modelBuilder.Entity("BugtrackerHF.Models.UserModel", b =>
@@ -140,7 +142,7 @@ namespace BugtrackerHF.Migrations
 
                     b.HasIndex("UserModelId");
 
-                    b.ToTable("UserModel", (string)null);
+                    b.ToTable("UserModel");
                 });
 
             modelBuilder.Entity("BugtrackerHF.Models.IssueModel", b =>

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BugtrackerHF.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class IssueController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -41,13 +42,19 @@ namespace BugtrackerHF.Controllers
 
             return View(viewModel);
         }
-
+    
+        /// <summary>
+        /// Receives a populated view specific model, calls IssueService.CreateNewIssue passing the view specific model as parameter. 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Redirects to /issue/display/{issueModel.id}</returns>
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateIssue([FromForm] CreateIssueViewModel model)
         {
-            var creatorUserId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserViewModelId").Value);
+            model.CreatedByUserId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserModelId").Value);
 
-            return RedirectToAction("DisplayIssue", "Issue", _issueService);
+            return RedirectToAction("DisplayIssue", "Issue", await _issueService.CreateNewIssue(model));
         }
 
         [Authorize]
