@@ -89,4 +89,21 @@ public class IssueService : IIssueService
         user.IssueList.Add(issue);
 
     }
+
+    public async Task CreateNewIssue(CreateIssueViewModel issue)
+    {
+        var issueToSave = new IssueModel
+        {
+            IssueName = issue.Title,
+            CreatedDate = DateTime.Now,
+            CurrentSeverity = Severity.Cosmetic,
+            CurrentStatus = Status.Unopened,
+            LastUpdateDate = DateTime.Now,
+            MessageList = new List<MessageModel>(
+                new MessageModel{ 
+                    CreatedTime = DateTime.Now,
+                    CreatedByUserId = issue.Description})
+        }
+        _unitOfWork
+    }
 }

@@ -29,7 +29,9 @@ namespace BugtrackerHF.Controllers
         {
             var projectList = new List<ProjectModel>
             {
-                new ProjectModel(){ Id = 1, ProjectName = "TestProject" }
+                new ProjectModel(){ Id = 1, ProjectName = "TestProjectId1" },
+                new ProjectModel(){ Id = 3, ProjectName = "TestProjectId3" },
+                new ProjectModel(){ Id = 5, ProjectName = "TestProjectId5" }
             };
 
             var viewModel = new CreateIssueViewModel()
@@ -41,36 +43,11 @@ namespace BugtrackerHF.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateIssue([FromForm] int selectedProjectId, CreateIssueViewModel model)
+        public async Task<IActionResult> CreateIssue([FromForm] CreateIssueViewModel model)
         {
-            Console.WriteLine(model.SelectedProject.ProjectName);
-            var userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserViewModelId").Value);
-            var messageList = new List<MessageModel>();
-            var message = new MessageModel()
-            {
-                CreatedByUserId = userId,
-                CreatedTime = DateTime.Now,
-                Message = model.Description
-            };
-            messageList.Add(message);
+            var creatorUserId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserViewModelId").Value);
 
-            var issue = new IssueModel()
-            {
-                MessageList = messageList,
-                CreatedDate = DateTime.Now,
-                CurrentStatus = Status.Unopened,
-                CurrentSeverity = Severity.Cosmetic,
-                IssueName = model.Description,
-                LastUpdateDate = DateTime.Now
-            };
-
-            await _unitOfWork.IssueRepository().InsertAsync(issue);
-            _unitOfWork.Save();
-
-            var newIssue = _unitOfWork.IssueRepository().GetAsync(issue);
-
-
-            return RedirectToAction("DisplayIssue", "Issue", newIssue.Id);
+            return RedirectToAction("DisplayIssue", "Issue", _issueService);
         }
 
         [Authorize]
