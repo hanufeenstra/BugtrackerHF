@@ -2,5 +2,5 @@
 
 public class MyIssuesViewModel
 {
-    public IList<IssueModel>? Issues { get; set; }
+    public IList<TableEntryViewModel>? Issues { get; set; }
 }
