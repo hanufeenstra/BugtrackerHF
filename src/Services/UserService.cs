@@ -28,4 +28,30 @@ public class UserService : IUserService
 
         return viewModel;
     }
+
+    public async Task<MyIssuesViewModel> GetMyIssuesViewModel(string authZeroId)
+    {
+        var user = await _unitOfWork.UserRepository().GetByAuthZeroIdAsync(authZeroId);
+        await _unitOfWork.UserRepository().LoadIssuesAsync(user);
+
+        var completedIssueList = new List<TableEntryViewModel>();
+        
+        foreach (var issue in user.IssueList)
+        {
+            completedIssueList.Add( new TableEntryViewModel
+            {
+                CurrentStatus = issue.CurrentStatus,
+                CreatedDate = issue.CreatedDate,
+                CreatorPicture = (await _unitOfWork.UserRepository().GetByIdAsync(issue.ReportedByUserId)).UserPicture,
+                ProjectName = "Empty for now",
+                RouteValue = issue.Id
+            });    
+        }
+        var viewModel = new MyIssuesViewModel
+        {
+            Issues = completedIssueList
+        };
+
+        return viewModel;
+    }
 }
