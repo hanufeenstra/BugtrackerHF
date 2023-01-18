@@ -4,7 +4,6 @@ namespace BugtrackerHF.Services;
 
 public interface IIssueService
 {
-    Task<MyIssuesViewModel> GetMyIssuesViewModel(string authZeroId);
     Task<DisplayIssueViewModel> GetDisplayIssueViewModel(int id);
     Task<int> CreateNewIssue(CreateIssueViewModel issue);
 }
