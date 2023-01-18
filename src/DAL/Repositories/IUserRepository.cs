@@ -6,6 +6,7 @@ namespace BugtrackerHF.DAL.Repositories;
 public interface IUserRepository : IGenericRepository<UserModel>
 {
     Task<UserModel> GetByAuthZeroIdAsync(string authZeroId);
+    Task<UserModel> GetByIdAsync(int id);
     Task<UserModel> LoadIssuesAsync(UserModel user);
     Task<UserModel> LoadIssuesByAuthZeroIdAsync(string authZeroId);
 }

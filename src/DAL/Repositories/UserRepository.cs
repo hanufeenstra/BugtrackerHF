@@ -26,6 +26,11 @@ public class UserRepository : GenericRepository<UserModel>, IUserRepository
             .SingleOrDefaultAsync(u => u.AuthZeroId == authZeroId);
     }
 
+    public async Task<UserModel> GetByIdAsync(int id)
+    {
+        return await _context.UserModel
+            .SingleOrDefaultAsync(u => u.Id == id);
+    }
     /// <summary>
     /// Loads the UserModel.IssueList explicitly for the user related to the authZeroId user claim
     /// </summary>
@@ -33,6 +38,8 @@ public class UserRepository : GenericRepository<UserModel>, IUserRepository
     /// <returns>UserModel object</returns>
     public async Task<UserModel> LoadIssuesByAuthZeroIdAsync(string authZeroId)
     {
+        
+        // Add method to check for completed issues and only load open issues
         if (authZeroId == null) throw new ArgumentNullException(nameof(authZeroId));
 
         var user = await _context.UserModel
