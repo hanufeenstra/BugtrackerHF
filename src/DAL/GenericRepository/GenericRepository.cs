@@ -49,11 +49,6 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
         return await _dbSet.FindAsync(entity);
     }
 
-    public virtual async Task<TEntity> GetByIdAsync(int id)
-    {
-        return await _dbSet.FindAsync(id);
-    }
-
     public virtual async Task InsertAsync(TEntity entityToInsert)
     {
         await _dbSet.AddAsync(entityToInsert);

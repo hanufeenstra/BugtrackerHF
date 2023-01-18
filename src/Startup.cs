@@ -91,8 +91,12 @@ namespace BugtrackerHF
                     pattern: "{controller=Index}/{action=Index}");
 
                 routes.MapControllerRoute(
-                    name: "Issue",
-                    pattern: "{controller=Issue}/{action=Create}");
+                    name: "CreateIssue",
+                    pattern: "{controller=Issue}/{action=CreateIssue}");
+                
+                routes.MapControllerRoute(
+                    name: "DisplayIssue",
+                    pattern: "{controller=Issue}/{action=DisplayIssue}/{id}");
 
                 routes.MapControllerRoute(
                     name: "Login",

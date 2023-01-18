@@ -16,7 +16,7 @@ namespace BugtrackerHF.Controllers
         private readonly ILogger<IssueModel> _logger;
 
         public IssueController(
-            ILogger<IssueModel> logger, 
+            ILogger<IssueModel> logger,
             IUnitOfWork unitOfWork,
             IIssueService issueService)
         {
@@ -30,9 +30,9 @@ namespace BugtrackerHF.Controllers
         {
             var projectList = new List<ProjectModel>
             {
-                new ProjectModel(){ Id = 1, ProjectName = "TestProjectId1" },
-                new ProjectModel(){ Id = 3, ProjectName = "TestProjectId3" },
-                new ProjectModel(){ Id = 5, ProjectName = "TestProjectId5" }
+                new ProjectModel() { Id = 1, ProjectName = "TestProjectId1" },
+                new ProjectModel() { Id = 3, ProjectName = "TestProjectId3" },
+                new ProjectModel() { Id = 5, ProjectName = "TestProjectId5" }
             };
 
             var viewModel = new CreateIssueViewModel()
@@ -42,7 +42,7 @@ namespace BugtrackerHF.Controllers
 
             return View(viewModel);
         }
-    
+
         /// <summary>
         /// Receives a populated view specific model, calls IssueService.CreateNewIssue passing the view specific model as parameter. 
         /// </summary>
@@ -53,14 +53,17 @@ namespace BugtrackerHF.Controllers
         public async Task<IActionResult> CreateIssue([FromForm] CreateIssueViewModel model)
         {
             model.CreatedByUserId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserModelId").Value);
-
-            return RedirectToAction("DisplayIssue", "Issue", await _issueService.CreateNewIssue(model));
+            var routeValue = await _issueService.CreateNewIssue(model);
+            
+            return RedirectToAction("DisplayIssue", new {id = routeValue});
         }
 
         [Authorize]
         public async Task<IActionResult> DisplayIssue(int id)
         {
-            return View(await _issueService.GetDisplayIssueViewModel(id));
+            var viewModel = await _issueService.GetDisplayIssueViewModel(id);
+            
+            return View(viewModel);
         }
     }
 }

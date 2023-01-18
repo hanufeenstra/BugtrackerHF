@@ -11186,24 +11186,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Hanu\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\hanuf\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Visual Studio Projects\\hanufeenstra\\BugtrackerHF\\test\\BugtrackerHF.Test.csproj",
+      "projectUniqueName": "C:\\Users\\hanuf\\source\\repos\\BugtrackerHF\\test\\BugtrackerHF.Test.csproj",
       "projectName": "BugtrackerHF.Test",
-      "projectPath": "E:\\Visual Studio Projects\\hanufeenstra\\BugtrackerHF\\test\\BugtrackerHF.Test.csproj",
-      "packagesPath": "C:\\Users\\Hanu\\.nuget\\packages\\",
-      "outputPath": "E:\\Visual Studio Projects\\hanufeenstra\\BugtrackerHF\\test\\obj\\",
+      "projectPath": "C:\\Users\\hanuf\\source\\repos\\BugtrackerHF\\test\\BugtrackerHF.Test.csproj",
+      "packagesPath": "C:\\Users\\hanuf\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hanuf\\source\\repos\\BugtrackerHF\\test\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Hanu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\hanuf\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11217,8 +11212,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "E:\\Visual Studio Projects\\hanufeenstra\\BugtrackerHF\\src\\BugtrackerHF.csproj": {
-              "projectPath": "E:\\Visual Studio Projects\\hanufeenstra\\BugtrackerHF\\src\\BugtrackerHF.csproj"
+            "C:\\Users\\hanuf\\source\\repos\\BugtrackerHF\\src\\BugtrackerHF.csproj": {
+              "projectPath": "C:\\Users\\hanuf\\source\\repos\\BugtrackerHF\\src\\BugtrackerHF.csproj"
             }
           }
         }
@@ -11260,8 +11255,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -11270,7 +11264,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

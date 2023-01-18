@@ -36,9 +36,11 @@ public class IssueService : IIssueService
     /// <returns>DisplayIssueViewModel</returns>
     public async Task<DisplayIssueViewModel> GetDisplayIssueViewModel(int issueId)
     {
+        Console.WriteLine($"issueId: {issueId}");
         var issue = await _unitOfWork.IssueRepository().GetByIdAsync(issueId);
-
-        var viewModel = new DisplayIssueViewModel()
+        Console.WriteLine($"issue.Id: {issue.Id}");
+        
+        var viewModel = new DisplayIssueViewModel
         {
            Id = issue.Id,
            LastUpdateDate = issue.LastUpdateDate,
@@ -48,7 +50,6 @@ public class IssueService : IIssueService
            IssueName = issue.IssueName,
            ReportedByUserId = issue.ReportedByUserId
         };
-
         return viewModel;
     }
     public async Task IncreaseIssueSeverity(int issueId)
@@ -85,12 +86,12 @@ public class IssueService : IIssueService
     {
         // Incomplete, need to implement removal from current user logic
 
-        var user = await _unitOfWork.UserRepository().GetByIdAsync(userId);
+        //var user = await _unitOfWork.UserRepository().GetByIdAsync(userId);
         
         issue.LastUpdateDate = DateTime.Now;
-        await _unitOfWork.UserRepository().LoadIssuesAsync(user);
+        //await _unitOfWork.UserRepository().LoadIssuesAsync(user);
 
-        user.IssueList.Add(issue);
+        //user.IssueList.Add(issue);
 
     }
 
@@ -118,13 +119,11 @@ public class IssueService : IIssueService
                     CreatedByUserId = issue.CreatedByUserId,
                     Message = issue.Description
                 }
-                
             }
         };
         await _unitOfWork.IssueRepository().InsertAsync(issueToSave);
         _unitOfWork.Save();
-
-        Console.WriteLine(issueToSave.Id);
+        
         return issueToSave.Id;
     }
 }

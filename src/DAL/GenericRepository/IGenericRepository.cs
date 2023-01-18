@@ -10,8 +10,7 @@ public interface IGenericRepository<T> where T : class
         Expression<Func<T, bool>> filter,
         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy,
         string includeProperties);
-
-    Task<T> GetByIdAsync(int id);
+    
     void Update(T entity);
     void Delete(object id);
 }

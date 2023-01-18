@@ -1,6 +1,8 @@
 ﻿using BugtrackerHF.DAL.Data;
 using BugtrackerHF.Models;
 using BugtrackerHF.DAL.GenericRepository;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BugtrackerHF.DAL.Repositories;
 
@@ -24,5 +26,10 @@ public class IssueRepository : GenericRepository<IssueModel>, IIssueRepository
             .LoadAsync();
 
         return issue;
+    }
+
+    public async Task<IssueModel> GetByIdAsync(int id)
+    {
+        return await _context.IssueModel.SingleOrDefaultAsync(i => i.Id == id);
     }
 }
