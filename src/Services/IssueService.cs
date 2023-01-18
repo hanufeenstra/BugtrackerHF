@@ -12,23 +12,7 @@ public class IssueService : IIssueService
     {
         _unitOfWork = unitOfWork;
     }
-
-    /// <summary>
-    /// Takes authZeroId as parameter, populates the view specific model with a list of Issues related to the User. 
-    /// </summary>
-    /// <param name="authZeroId"></param>
-    /// <returns>MyIssuesViewModel</returns>
-    public async Task<MyIssuesViewModel> GetMyIssuesViewModel(string authZeroId)
-    {
-        var user = await _unitOfWork.UserRepository().LoadIssuesByAuthZeroIdAsync(authZeroId);
-
-        var viewModel = new MyIssuesViewModel
-        {
-            Issues = user.IssueList
-        };
-
-        return viewModel;
-    }
+    
     /// <summary>
     /// Takes the issue id as parameter, returns a view specific model for the issue related to the issue id.
     /// </summary>
