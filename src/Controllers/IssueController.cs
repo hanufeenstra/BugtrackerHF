@@ -54,8 +54,8 @@ namespace BugtrackerHF.Controllers
         {
             model.CreatedByUserId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserModelId").Value);
             var routeValue = await _issueService.CreateNewIssue(model);
-            
-            return RedirectToAction("DisplayIssue", new {id = routeValue});
+
+            return RedirectToAction("DisplayIssue", new { id = routeValue });
         }
 
         [Authorize]
