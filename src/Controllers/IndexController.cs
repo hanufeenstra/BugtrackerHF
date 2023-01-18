@@ -10,23 +10,23 @@ namespace BugtrackerHF.Controllers
     public class IndexController : Controller
     {
         private readonly ILogger<IndexController> _logger;
-        private readonly IIssueService _issueService;
+        private readonly IUserService _userService;
         private readonly IDashboardService _dashboardService;
 
         public IndexController(
             ILogger<IndexController> logger,
-            IIssueService issueService,
+            IUserService userService,
             IDashboardService dashboardService)
         {
             _logger = logger;
-            _issueService = issueService;
+            _userService = userService;
             _dashboardService = dashboardService;
         }
 
         [Authorize]
         public async Task<IActionResult> MyIssues()
         {
-            return View(await _issueService.GetMyIssuesViewModel(GetUserAuthZeroId()));
+            return View(await _userService.GetMyIssuesViewModel(GetUserAuthZeroId()));
         }
 
         [Authorize]
