@@ -33,9 +33,8 @@
               <tr>
                   <th> Status </th>
                   <th> Reported By </th>
-                  <th> Product Cost </th>
+                  <th> Created Date </th>
                   <th> Project </th>
-                  <th> Payment Mode </th>
                   <th> Last Modified </th>
                   <th> Severity </th>
                   <th> Action </th>
@@ -45,11 +44,11 @@
               @{
                   if (Model.Issues.Any())
                   {
-                      foreach (var issue in Model.Issues)
+                      foreach (var entry in Model.Issues)
                           {
                               <tr>
                                   <td>
-                                      @switch (issue.CurrentStatus)
+                                      @switch (entry.CurrentStatus)
                                       {
                                           case Status.Unopened:
                                               <div class="badge badge-outline-secondary">Unopened</div>
@@ -82,16 +81,14 @@
 
                                   </td>
                                   <td>
-                                      <img src="~/assets/images/faces/face1.jpg" alt="image"/>
-                                      <span class="ps-2">@issue.ReportedByUserId</span>
+                                      <img src="@entry.CreatorPicture" alt="image"/>
                                   </td>
-                                  <td> 02312 </td>
-                                  <td> $14,500 </td>
-                                  <td> Dashboard </td>
-                                  <td> Credit card </td>
+                                  <td> <p>@entry.CreatedDate</p> </td>
+                                  <td> <p>@entry.ProjectName</p> </td>
+                                  <td> <p>@entry.LastModified</p> </td>
                                   <!--- Selecting a badge based on issue severity --->
                                   <td>
-                                      @switch (issue.CurrentSeverity)
+                                      @switch (entry.CurrentSeverity)
                                       {
                                           case Severity.Cosmetic:
                                               <div class="badge badge-outline-success">Cosmetic</div>
@@ -118,12 +115,12 @@
 
                                   <td>
                                       <div class="dropdown">
-                                          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuOutlineButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit </button>
+                                          <div class="btn btn-outline-secondary dropdown-toggle" id="dropdownMenuOutlineButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit </div>
                                           <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton2">
                                               <h6 class="dropdown-header">Actions</h6>
-                                              <a class="dropdown-item" href="#">Edit</a>
-                                              <a class="dropdown-item" href="#">Escalate</a>
-                                              <a class="dropdown-item" href="#">Mark as resolved</a>
+                                              <a href="/issue/displayissue/@entry.RouteValue" class="dropdown-item">Edit</a>
+                                              <a class="dropdown-item">Escalate</a>
+                                              <a class="dropdown-item">Mark as resolved</a>
                                           </div>
                                       </div>
                                   </td>
